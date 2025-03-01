@@ -1,0 +1,16 @@
+2025-03-01 17:20:48,598 - INFO - Server avviato su 0.0.0.0:8080
+2025-03-01 17:21:37,134 - INFO - Server avviato su 0.0.0.0:8080
+2025-03-01 17:21:47,236 - INFO - Creato file di configurazione Nginx: /etc/nginx/proxy_manager/example.com.conf
+2025-03-01 17:21:47,237 - INFO - Nginx ricaricato con successo
+2025-03-01 17:21:47,238 - INFO - Proxy creato: example.com (HTTPS: False)
+2025-03-01 17:21:57,529 - INFO - Creato file di configurazione Nginx: /etc/nginx/proxy_manager/secure.example.com.conf
+2025-03-01 17:21:57,530 - INFO - Richiesta certificato SSL per secure.example.com
+2025-03-01 17:21:57,531 - ERROR - Errore nella generazione del certificato SSL per secure.example.com
+2025-03-01 17:21:57,532 - INFO - Nginx ricaricato con successo
+2025-03-01 17:21:57,532 - INFO - Proxy creato: secure.example.com (HTTPS: True)
+2025-03-01 17:22:36,648 - INFO - Server avviato su 0.0.0.0:8080
+2025-03-01 17:22:47,301 - INFO - Creato file di configurazione Nginx: /etc/nginx/proxy_manager/secure.example.com.conf
+2025-03-01 17:22:47,301 - INFO - Richiesta certificato SSL per secure.example.com
+2025-03-01 17:22:47,302 - ERROR - Errore nella generazione del certificato SSL per secure.example.com
+2025-03-01 17:22:47,303 - INFO - Nginx ricaricato con successo
+2025-03-01 17:22:47,303 - INFO - Proxy creato: secure.example.com (HTTPS: True)

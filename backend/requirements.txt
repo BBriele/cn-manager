@@ -1,2 +1,7 @@
 jinja2
+cloudflare
+certbot
+certbot-nginx
 certbot-dns-cloudflare
+dotenv
+python-cloudflare

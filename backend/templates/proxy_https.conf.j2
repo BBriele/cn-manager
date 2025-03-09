@@ -1,19 +1,19 @@
 server {
-    listen 80;
-    server_name {{ domain }};
-    return 301 https://$host$request_uri;
-}
-
-server {
     listen 443 ssl;
     server_name {{ domain }};
 
-    ssl_certificate /etc/letsencrypt/live/{{ domain }}/fullchain.pem;
-    ssl_certificate_key /etc/letsencrypt/live/{{ domain }}/privkey.pem;
+    {% if ssl_certificate %}
+    ssl_certificate /etc/letsencrypt/live/{{ ssl_certificate }}/live/{{ domain }}/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/{{ ssl_certificate }}/live/{{ domain }}/privkey.pem;
+    {% else %}
+    ssl_certificate /etc/nginx/dummy_cert.pem;
+    ssl_certificate_key /etc/nginx/dummy_key.pem;
+    {% endif %}
 
     location / {
         proxy_pass http://{{ backend_host }}:{{ backend_port }};
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
     }
 }

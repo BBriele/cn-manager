@@ -1,0 +1,29 @@
+{
+    "proxies": [
+        {
+            "domains": [
+                "devo.g-server.site"
+            ],
+            "backend_host": "192.168.1.210",
+            "backend_port": "8080",
+            "use_https": false,
+            "ssl_certificate": "-38189438826288307",
+            "enable_websocket": "false",
+            "id": 9172614713144695379
+        }
+    ],
+    "ssl_certificates": [
+        {
+            "id": -38189438826288307,
+            "type": "cloudflare",
+            "domain_list": [
+                "devo.g-server.site"
+            ],
+            "created_at": "2025-03-03 10:27:39",
+            "expires_at": "2025-06-01 10:28:01",
+            "status": "active",
+            "path": "/etc/letsencrypt/live/-38189438826288307"
+        }
+    ],
+    "config": []
+}

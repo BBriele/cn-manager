@@ -1,16 +1,225 @@
-2025-03-01 17:20:48,598 - INFO - Server avviato su 0.0.0.0:8080
-2025-03-01 17:21:37,134 - INFO - Server avviato su 0.0.0.0:8080
-2025-03-01 17:21:47,236 - INFO - Creato file di configurazione Nginx: /etc/nginx/proxy_manager/example.com.conf
-2025-03-01 17:21:47,237 - INFO - Nginx ricaricato con successo
-2025-03-01 17:21:47,238 - INFO - Proxy creato: example.com (HTTPS: False)
-2025-03-01 17:21:57,529 - INFO - Creato file di configurazione Nginx: /etc/nginx/proxy_manager/secure.example.com.conf
-2025-03-01 17:21:57,530 - INFO - Richiesta certificato SSL per secure.example.com
-2025-03-01 17:21:57,531 - ERROR - Errore nella generazione del certificato SSL per secure.example.com
-2025-03-01 17:21:57,532 - INFO - Nginx ricaricato con successo
-2025-03-01 17:21:57,532 - INFO - Proxy creato: secure.example.com (HTTPS: True)
-2025-03-01 17:22:36,648 - INFO - Server avviato su 0.0.0.0:8080
-2025-03-01 17:22:47,301 - INFO - Creato file di configurazione Nginx: /etc/nginx/proxy_manager/secure.example.com.conf
-2025-03-01 17:22:47,301 - INFO - Richiesta certificato SSL per secure.example.com
-2025-03-01 17:22:47,302 - ERROR - Errore nella generazione del certificato SSL per secure.example.com
-2025-03-01 17:22:47,303 - INFO - Nginx ricaricato con successo
-2025-03-01 17:22:47,303 - INFO - Proxy creato: secure.example.com (HTTPS: True)
+2025-03-02 13:06:45,852 - INFO - Server started on 0.0.0.0:8080
+2025-03-02 13:06:51,372 - INFO - Richiesta certificato SSL di tipo letsencrypt
+2025-03-02 13:06:51,373 - INFO - Domain list for certificate -d dev.g-server.site -d bella.g-server.site
+2025-03-02 13:06:51,373 - ERROR - Error: can only concatenate str (not "list") to str
+2025-03-02 13:08:18,182 - INFO - Server started on 0.0.0.0:8080
+2025-03-02 13:08:22,410 - INFO - Richiesta certificato SSL di tipo letsencrypt
+2025-03-02 13:08:22,410 - INFO - Domain list for certificate -d dev.g-server.site -d bella.g-server.site
+2025-03-02 13:08:22,410 - ERROR - Error: can only concatenate str (not "int") to str
+2025-03-02 13:09:03,225 - INFO - Server started on 0.0.0.0:8080
+2025-03-02 13:09:06,734 - INFO - Richiesta certificato SSL di tipo letsencrypt
+2025-03-02 13:09:06,734 - INFO - Domain list for certificate -d dev.g-server.site -d bella.g-server.site
+2025-03-02 13:09:07,121 - INFO - Succesfully generated letsencrypt certificate
+2025-03-02 13:09:07,121 - ERROR - Errore nella generazione del certificato SSL per 256
+2025-03-02 13:10:14,289 - INFO - Server started on 0.0.0.0:8080
+2025-03-02 13:10:17,559 - INFO - Richiesta certificato SSL di tipo letsencrypt
+2025-03-02 13:10:17,559 - INFO - Domain list for certificate -d dev.g-server.site -d bella.g-server.site
+2025-03-02 13:10:17,928 - INFO - Succesfully generated letsencrypt certificate
+2025-03-02 13:10:17,929 - ERROR - Errore nella generazione del certificato SSL per 256
+2025-03-02 13:11:58,405 - INFO - Server started on 0.0.0.0:8080
+2025-03-02 13:12:01,739 - INFO - Richiesta certificato SSL di tipo letsencrypt
+2025-03-02 13:12:01,739 - INFO - Domain list for certificate -d dev.g-server.site -d bella.g-server.site
+2025-03-02 13:12:07,641 - INFO - Succesfully generated letsencrypt certificate
+2025-03-02 13:12:07,641 - ERROR - Errore nella generazione del certificato SSL per 256
+2025-03-02 13:13:45,886 - INFO - Server started on 0.0.0.0:8080
+2025-03-02 13:13:56,838 - INFO - Richiesta certificato SSL di tipo letsencrypt
+2025-03-02 13:13:56,838 - INFO - Domain list for certificate -d dev.g-server.site
+2025-03-02 13:14:04,776 - INFO - Succesfully generated letsencrypt certificate
+2025-03-02 13:14:04,776 - INFO - Certificato SSL generato con successo
+2025-03-02 13:14:04,776 - INFO - DB saved: {'proxies': [{'domains': ['dev.g-server.site'], 'backend_host': '192.168.1.210', 'backend_port': '8080', 'use_https': 'false', 'ssl_certificate': '8634119624380815763', 'enable_websocket': 'false'}], 'ssl_certificates': [{'id': 6323913294076560671, 'type': 'letsencrypt', 'domain_list': ['dev.g-server.site'], 'created_at': '2025-03-02 13:13:56', 'expires_at': '2025-05-31 13:14:04', 'status': 'active', 'path': "/etc/letsencrypt/live/['dev.g-server.site']"}], 'config': []}
+2025-03-02 13:15:22,651 - INFO - Richiesta certificato SSL di tipo cloudflare
+2025-03-02 13:15:22,651 - INFO - Domain list for certificate -d dev.g-server.site
+2025-03-02 13:15:26,373 - INFO - Succesfully generated cloudflare certificate
+2025-03-02 13:15:26,373 - INFO - Certificato SSL generato con successo
+2025-03-02 13:15:26,373 - INFO - DB saved: {'proxies': [{'domains': ['dev.g-server.site'], 'backend_host': '192.168.1.210', 'backend_port': '8080', 'use_https': 'false', 'ssl_certificate': '8634119624380815763', 'enable_websocket': 'false'}], 'ssl_certificates': [{'id': 6323913294076560671, 'type': 'letsencrypt', 'domain_list': ['dev.g-server.site'], 'created_at': '2025-03-02 13:13:56', 'expires_at': '2025-05-31 13:14:04', 'status': 'active', 'path': '/etc/letsencrypt/live/6323913294076560671'}, {'id': -6746409823901773987, 'type': 'cloudflare', 'domain_list': ['dev.g-server.site'], 'created_at': '2025-03-02 13:15:22', 'expires_at': '2025-05-31 13:15:26', 'status': 'active', 'path': "/etc/letsencrypt/live/['dev.g-server.site']"}], 'config': []}
+2025-03-02 13:21:16,487 - INFO - Server started on 0.0.0.0:8080
+2025-03-02 13:21:24,358 - INFO - DB saved: {'proxies': [{'domains': ['dev.g-server.site'], 'backend_host': '192.168.1.210', 'backend_port': '8080', 'use_https': 'false', 'ssl_certificate': '-6746409823901773987', 'enable_websocket': 'false'}], 'ssl_certificates': [{'id': 6323913294076560671, 'type': 'letsencrypt', 'domain_list': ['dev.g-server.site'], 'created_at': '2025-03-02 13:13:56', 'expires_at': '2025-05-31 13:14:04', 'status': 'active', 'path': '/etc/letsencrypt/live/6323913294076560671'}, {'id': -6746409823901773987, 'type': 'cloudflare', 'domain_list': ['dev.g-server.site'], 'created_at': '2025-03-02 13:15:22', 'expires_at': '2025-05-31 13:15:26', 'status': 'active', 'path': '/etc/letsencrypt/live/-6746409823901773987'}], 'config': []}
+2025-03-02 13:21:24,361 - INFO - Nginix config file created: /etc/nginx/proxy_manager/['dev.g-server.site'].conf
+2025-03-02 13:21:24,369 - INFO - Nginx successfully reloaded
+2025-03-02 13:21:24,369 - INFO - Applied all proxies
+2025-03-02 13:21:24,370 - INFO - Proxy created: ['dev.g-server.site']
+2025-03-02 13:27:20,586 - INFO - Server started on 0.0.0.0:8080
+2025-03-02 13:27:41,425 - INFO - Richiesta certificato SSL di tipo cloudflare
+2025-03-02 13:27:41,425 - INFO - Domain list for certificate -d dev.g-server.site
+2025-03-02 13:27:44,906 - INFO - Succesfully generated cloudflare certificate
+2025-03-02 13:27:44,906 - INFO - Certificato SSL generato con successo
+2025-03-02 13:27:44,907 - INFO - DB saved: {'proxies': [], 'ssl_certificates': [{'id': 4129950562275870988, 'type': 'cloudflare', 'domain_list': ['dev.g-server.site'], 'created_at': '2025-03-02 13:27:41', 'expires_at': '2025-05-31 13:27:44', 'status': 'active', 'path': '/etc/letsencrypt/live/4129950562275870988'}], 'config': []}
+2025-03-02 13:27:58,003 - ERROR - Error: unsupported operand type(s) for +: 'dict' and 'datetime.datetime'
+2025-03-02 13:29:13,849 - INFO - Server started on 0.0.0.0:8080
+2025-03-02 13:29:18,744 - ERROR - Error: unsupported operand type(s) for +: 'dict' and 'str'
+2025-03-02 13:29:52,369 - INFO - Server started on 0.0.0.0:8080
+2025-03-02 13:29:55,661 - INFO - DB saved: {'proxies': [{'domains': ['dev.g-server.site'], 'backend_host': '192.168.1.210', 'backend_port': '8080', 'use_https': 'false', 'ssl_certificate': '4129950562275870988', 'enable_websocket': 'false', 'id': -6545404857696347281}], 'ssl_certificates': [{'id': 4129950562275870988, 'type': 'cloudflare', 'domain_list': ['dev.g-server.site'], 'created_at': '2025-03-02 13:27:41', 'expires_at': '2025-05-31 13:27:44', 'status': 'active', 'path': '/etc/letsencrypt/live/4129950562275870988'}], 'config': []}
+2025-03-02 13:29:55,664 - INFO - Nginix config file created: /etc/nginx/proxy_manager/['dev.g-server.site'].conf
+2025-03-02 13:29:55,675 - INFO - Nginx successfully reloaded
+2025-03-02 13:29:55,675 - INFO - Applied all proxies
+2025-03-02 13:29:55,675 - INFO - Proxy created: ['dev.g-server.site']
+2025-03-02 13:31:33,142 - INFO - Server started on 0.0.0.0:8080
+2025-03-02 13:31:36,491 - INFO - DB saved: {'proxies': [{'domains': ['dev.g-server.site'], 'backend_host': '192.168.1.210', 'backend_port': '8080', 'use_https': 'false', 'ssl_certificate': '4129950562275870988', 'enable_websocket': 'false', 'id': 5421400159136541019}], 'ssl_certificates': [{'id': 4129950562275870988, 'type': 'cloudflare', 'domain_list': ['dev.g-server.site'], 'created_at': '2025-03-02 13:27:41', 'expires_at': '2025-05-31 13:27:44', 'status': 'active', 'path': '/etc/letsencrypt/live/4129950562275870988'}], 'config': []}
+2025-03-02 13:31:36,493 - INFO - Nginix config file created: /etc/nginx/proxy_manager/5421400159136541019.conf
+2025-03-02 13:31:36,501 - INFO - Nginx successfully reloaded
+2025-03-02 13:31:36,501 - INFO - Applied all proxies
+2025-03-02 13:31:36,501 - INFO - Proxy created: ['dev.g-server.site']
+2025-03-02 13:33:49,447 - INFO - Server started on 0.0.0.0:8080
+2025-03-02 13:33:53,725 - INFO - DB saved: {'proxies': [{'domains': ['dev.g-server.site'], 'backend_host': '192.168.1.210', 'backend_port': '8080', 'use_https': 'false', 'ssl_certificate': '4129950562275870988', 'enable_websocket': 'false', 'id': 5421400159136541019}, {'domains': ['dev.g-server.site'], 'backend_host': '192.168.1.210', 'backend_port': '8080', 'use_https': 'false', 'ssl_certificate': '4129950562275870988', 'enable_websocket': 'false', 'id': -7203835367699519959}], 'ssl_certificates': [{'id': 4129950562275870988, 'type': 'cloudflare', 'domain_list': ['dev.g-server.site'], 'created_at': '2025-03-02 13:27:41', 'expires_at': '2025-05-31 13:27:44', 'status': 'active', 'path': '/etc/letsencrypt/live/4129950562275870988'}], 'config': []}
+2025-03-02 13:33:53,728 - INFO - Nginix config file created: /etc/nginx/proxy_manager/5421400159136541019.conf
+2025-03-02 13:33:53,730 - INFO - Nginix config file created: /etc/nginx/proxy_manager/-7203835367699519959.conf
+2025-03-02 13:33:53,740 - INFO - Nginx successfully reloaded
+2025-03-02 13:33:53,740 - INFO - Applied all proxies
+2025-03-02 13:33:53,740 - INFO - Proxy created: ['dev.g-server.site']
+2025-03-02 13:35:37,743 - INFO - Server started on 0.0.0.0:8080
+2025-03-02 13:35:42,426 - INFO - DB saved: {'proxies': [{'domains': ['dev.g-server.site'], 'backend_host': '192.168.1.210', 'backend_port': '8080', 'use_https': 'false', 'ssl_certificate': '4129950562275870988', 'enable_websocket': 'false', 'id': -6827576764582906062}], 'ssl_certificates': [{'id': 4129950562275870988, 'type': 'cloudflare', 'domain_list': ['dev.g-server.site'], 'created_at': '2025-03-02 13:27:41', 'expires_at': '2025-05-31 13:27:44', 'status': 'active', 'path': '/etc/letsencrypt/live/4129950562275870988'}], 'config': []}
+2025-03-02 13:35:42,430 - INFO - Nginix config file created: /etc/nginx/proxy_manager/-6827576764582906062.conf
+2025-03-02 13:35:42,438 - INFO - Nginx successfully reloaded
+2025-03-02 13:35:42,438 - INFO - Applied all proxies
+2025-03-02 13:35:42,438 - INFO - Proxy created: ['dev.g-server.site']
+2025-03-02 13:39:12,102 - INFO - Server started on 0.0.0.0:8080
+2025-03-02 13:39:14,118 - INFO - DB saved: {'proxies': [{'domains': ['dev.g-server.site'], 'backend_host': '192.168.1.210', 'backend_port': '8080', 'use_https': False, 'ssl_certificate': '4129950562275870988', 'enable_websocket': 'false', 'id': 8530707902834646335}], 'ssl_certificates': [{'id': 4129950562275870988, 'type': 'cloudflare', 'domain_list': ['dev.g-server.site'], 'created_at': '2025-03-02 13:27:41', 'expires_at': '2025-05-31 13:27:44', 'status': 'active', 'path': '/etc/letsencrypt/live/4129950562275870988'}], 'config': []}
+2025-03-02 13:39:14,120 - INFO - Nginix config file created: /etc/nginx/proxy_manager/8530707902834646335.conf
+2025-03-02 13:39:14,130 - INFO - Nginx successfully reloaded
+2025-03-02 13:39:14,130 - INFO - Applied all proxies
+2025-03-02 13:39:14,130 - INFO - Proxy created: ['dev.g-server.site']
+2025-03-02 13:40:10,039 - INFO - Server started on 0.0.0.0:8080
+2025-03-02 13:40:15,762 - INFO - DB saved: {'proxies': [{'domains': ['dev.g-server.site'], 'backend_host': '192.168.1.210', 'backend_port': '8080', 'use_https': False, 'ssl_certificate': '4129950562275870988', 'enable_websocket': 'false', 'id': 3596724718620354746}], 'ssl_certificates': [{'id': 4129950562275870988, 'type': 'cloudflare', 'domain_list': ['dev.g-server.site'], 'created_at': '2025-03-02 13:27:41', 'expires_at': '2025-05-31 13:27:44', 'status': 'active', 'path': '/etc/letsencrypt/live/4129950562275870988'}], 'config': []}
+2025-03-02 13:40:15,765 - INFO - Nginix config file created: /etc/nginx/proxy_manager/3596724718620354746.conf
+2025-03-02 13:40:15,775 - INFO - Nginx successfully reloaded
+2025-03-02 13:40:15,775 - INFO - Applied all proxies
+2025-03-02 13:40:15,775 - INFO - Proxy created: ['dev.g-server.site']
+2025-03-02 13:42:01,525 - INFO - Server started on 0.0.0.0:8080
+2025-03-02 13:42:07,167 - INFO - Richiesta certificato SSL di tipo cloudflare
+2025-03-02 13:42:07,168 - INFO - Domain list for certificate -d dev.g-server.site
+2025-03-02 13:42:08,471 - INFO - Succesfully generated cloudflare certificate
+2025-03-02 13:42:08,471 - ERROR - Errore nella generazione del certificato SSL per 256
+2025-03-02 13:44:56,075 - INFO - Richiesta certificato SSL di tipo cloudflare
+2025-03-02 13:44:56,075 - INFO - Domain list for certificate -d devo.g-server.site
+2025-03-02 13:44:57,593 - INFO - Succesfully generated cloudflare certificate
+2025-03-02 13:44:57,593 - ERROR - Errore nella generazione del certificato SSL per 256
+2025-03-02 13:46:06,466 - INFO - Server started on 0.0.0.0:8080
+2025-03-02 13:46:09,491 - INFO - Richiesta certificato SSL di tipo cloudflare
+2025-03-02 13:46:09,491 - INFO - Domain list for certificate -d devo.g-server.site
+2025-03-02 13:46:11,107 - INFO - Succesfully generated cloudflare certificate
+2025-03-02 13:46:11,108 - ERROR - Errore nella generazione del certificato SSL per 256
+2025-03-02 13:48:40,122 - INFO - Richiesta certificato SSL di tipo cloudflare
+2025-03-02 13:48:40,123 - INFO - Domain list for certificate -d devo.g-server.site
+2025-03-02 13:48:41,844 - INFO - Succesfully generated cloudflare certificate
+2025-03-02 13:48:41,844 - ERROR - Errore nella generazione del certificato SSL per 256
+2025-03-02 13:50:06,131 - INFO - Richiesta certificato SSL di tipo cloudflare
+2025-03-02 13:50:06,132 - INFO - Domain list for certificate -d devo.g-server.site
+2025-03-02 13:50:07,770 - INFO - Succesfully generated cloudflare certificate
+2025-03-02 13:50:07,770 - ERROR - Errore nella generazione del certificato SSL per 256
+2025-03-02 13:51:05,734 - INFO - Server started on 0.0.0.0:8080
+2025-03-02 13:51:10,044 - INFO - Richiesta certificato SSL di tipo cloudflare
+2025-03-02 13:51:10,044 - INFO - Domain list for certificate -d devo.g-server.site
+2025-03-02 13:51:11,639 - ERROR - Errore nella generazione del certificato SSL per 256
+2025-03-02 14:04:58,420 - INFO - Server started on 0.0.0.0:8080
+2025-03-02 14:05:04,447 - INFO - Richiesta certificato SSL di tipo cloudflare
+2025-03-02 14:05:04,448 - INFO - Domain list for certificate -d devo.g-server.site
+2025-03-02 14:05:06,327 - ERROR - Errore nella generazione del certificato SSL per 256
+2025-03-02 14:06:00,304 - INFO - Server started on 0.0.0.0:8080
+2025-03-02 14:06:09,368 - INFO - Richiesta certificato SSL di tipo cloudflare
+2025-03-02 14:06:09,368 - INFO - Domain list for certificate -d devo.g-server.site
+2025-03-02 14:06:11,116 - ERROR - Errore nella generazione del certificato SSL per 256
+2025-03-02 14:06:37,905 - INFO - Server started on 0.0.0.0:8080
+2025-03-02 14:06:41,501 - INFO - Richiesta certificato SSL di tipo cloudflare
+2025-03-02 14:06:41,501 - INFO - Domain list for certificate -d devo.g-server.site
+2025-03-02 14:07:03,353 - INFO - Certificato SSL generato con successo
+2025-03-02 14:07:03,382 - INFO - Succesfully generated cloudflare certificate
+2025-03-02 14:07:03,405 - INFO - DB saved: {'proxies': [], 'ssl_certificates': [{'id': -8948087840735429194, 'type': 'cloudflare', 'domain_list': ['devo.g-server.site'], 'created_at': '2025-03-02 14:06:41', 'expires_at': '2025-05-31 14:07:03', 'status': 'active', 'path': '/etc/letsencrypt/live/-8948087840735429194'}], 'config': []}
+2025-03-02 14:07:36,945 - INFO - DB saved: {'proxies': [{'domains': ['devo.g-server.site'], 'backend_host': '192.168.1.210', 'backend_port': '8080', 'use_https': False, 'ssl_certificate': '-8948087840735429194', 'enable_websocket': 'false', 'id': -3543295952659737918}], 'ssl_certificates': [{'id': -8948087840735429194, 'type': 'cloudflare', 'domain_list': ['devo.g-server.site'], 'created_at': '2025-03-02 14:06:41', 'expires_at': '2025-05-31 14:07:03', 'status': 'active', 'path': '/etc/letsencrypt/live/-8948087840735429194'}], 'config': []}
+2025-03-02 14:07:37,031 - INFO - Nginix config file created: /etc/nginx/proxy_manager/-3543295952659737918.conf
+2025-03-02 14:07:37,048 - INFO - Nginx successfully reloaded
+2025-03-02 14:07:37,048 - INFO - Applied all proxies
+2025-03-02 14:07:37,049 - INFO - Proxy created: ['devo.g-server.site']
+2025-03-02 14:11:32,184 - INFO - Richiesta certificato SSL di tipo letsencrypt
+2025-03-02 14:11:32,184 - INFO - Domain list for certificate -d devo.g-server.site
+2025-03-02 14:11:32,584 - ERROR - Errore nella generazione del certificato SSL per 256
+2025-03-02 14:12:27,637 - INFO - Server started on 0.0.0.0:8080
+2025-03-02 14:12:35,647 - INFO - Richiesta certificato SSL di tipo letsencrypt
+2025-03-02 14:12:35,647 - INFO - Domain list for certificate -d devo.g-server.site
+2025-03-02 14:12:36,030 - ERROR - Errore nella generazione del certificato SSL per 256
+2025-03-02 14:16:43,511 - INFO - Server started on 0.0.0.0:8080
+2025-03-02 14:16:46,581 - INFO - Richiesta certificato SSL di tipo letsencrypt
+2025-03-02 14:16:46,581 - INFO - Domain list for certificate -d devo.g-server.site
+2025-03-02 14:16:54,782 - INFO - Certificato SSL generato con successo
+2025-03-02 14:16:54,783 - INFO - Succesfully generated letsencrypt certificate
+2025-03-02 14:16:54,783 - INFO - DB saved: {'proxies': [{'domains': ['devo.g-server.site'], 'backend_host': '192.168.1.210', 'backend_port': '8080', 'use_https': False, 'ssl_certificate': '-8948087840735429194', 'enable_websocket': 'false', 'id': -3543295952659737918}], 'ssl_certificates': [{'id': -6542632056687075849, 'type': 'letsencrypt', 'domain_list': ['devo.g-server.site'], 'created_at': '2025-03-02 14:16:46', 'expires_at': '2025-05-31 14:16:54', 'status': 'active', 'path': '/etc/letsencrypt/live/-6542632056687075849'}], 'config': []}
+2025-03-02 14:18:33,034 - INFO - DB saved: {'proxies': [{'domains': ['devo.g-server.site'], 'backend_host': '192.168.1.210', 'backend_port': '8080', 'use_https': False, 'ssl_certificate': '-6542632056687075849', 'enable_websocket': 'false', 'id': 8004720839822757413}], 'ssl_certificates': [{'id': -6542632056687075849, 'type': 'letsencrypt', 'domain_list': ['devo.g-server.site'], 'created_at': '2025-03-02 14:16:46', 'expires_at': '2025-05-31 14:16:54', 'status': 'active', 'path': '/etc/letsencrypt/live/-6542632056687075849'}], 'config': []}
+2025-03-02 14:18:33,038 - INFO - Nginix config file created: /etc/nginx/proxy_manager/8004720839822757413.conf
+2025-03-02 14:18:33,052 - INFO - Nginx successfully reloaded
+2025-03-02 14:18:33,052 - INFO - Applied all proxies
+2025-03-02 14:18:33,052 - INFO - Proxy created: ['devo.g-server.site']
+2025-03-02 14:24:28,719 - INFO - DB saved: {'proxies': [{'domains': ['devo.g-server.site'], 'backend_host': '192.168.1.210', 'backend_port': '8080', 'use_https': False, 'ssl_certificate': '-6542632056687075849', 'enable_websocket': 'false', 'id': 8841765807783093505}], 'ssl_certificates': [{'id': -6542632056687075849, 'type': 'letsencrypt', 'domain_list': ['devo.g-server.site'], 'created_at': '2025-03-02 14:16:46', 'expires_at': '2025-05-31 14:16:54', 'status': 'active', 'path': '/etc/letsencrypt/live/-6542632056687075849'}], 'config': []}
+2025-03-02 14:24:28,721 - INFO - Nginix config file created: /etc/nginx/proxy_manager/8841765807783093505.conf
+2025-03-02 14:24:28,730 - INFO - Nginx successfully reloaded
+2025-03-02 14:24:28,730 - INFO - Applied all proxies
+2025-03-02 14:24:28,730 - INFO - Proxy created: ['devo.g-server.site']
+2025-03-02 14:25:37,344 - INFO - Server started on 0.0.0.0:8080
+2025-03-02 14:25:40,482 - INFO - DB saved: {'proxies': [{'domains': ['devo.g-server.site'], 'backend_host': '192.168.1.210', 'backend_port': '8080', 'use_https': False, 'ssl_certificate': '-6542632056687075849', 'enable_websocket': 'false', 'id': 8841765807783093505}, {'domains': ['devo.g-server.site'], 'backend_host': '192.168.1.210', 'backend_port': '8080', 'use_https': False, 'ssl_certificate': '-6542632056687075849', 'enable_websocket': 'false', 'id': 3567836873866336202}], 'ssl_certificates': [{'id': -6542632056687075849, 'type': 'letsencrypt', 'domain_list': ['devo.g-server.site'], 'created_at': '2025-03-02 14:16:46', 'expires_at': '2025-05-31 14:16:54', 'status': 'active', 'path': '/etc/letsencrypt/live/-6542632056687075849'}], 'config': []}
+2025-03-02 14:25:40,486 - INFO - Nginix config file created: /etc/nginx/proxy_manager/8841765807783093505.conf
+2025-03-02 14:25:40,489 - INFO - Nginix config file created: /etc/nginx/proxy_manager/3567836873866336202.conf
+2025-03-02 14:25:40,506 - INFO - Nginx successfully reloaded
+2025-03-02 14:25:40,506 - INFO - Applied all proxies
+2025-03-02 14:25:40,506 - INFO - Proxy created: ['devo.g-server.site']
+2025-03-02 14:25:58,365 - INFO - DB saved: {'proxies': [{'domains': ['devo.g-server.site'], 'backend_host': '192.168.1.210', 'backend_port': '8080', 'use_https': False, 'ssl_certificate': '-6542632056687075849', 'enable_websocket': 'false', 'id': 8841765807783093505}, {'domains': ['devo.g-server.site'], 'backend_host': '192.168.1.210', 'backend_port': '8080', 'use_https': False, 'ssl_certificate': '-6542632056687075849', 'enable_websocket': 'false', 'id': 3567836873866336202}, {'domains': ['devo.g-server.site'], 'backend_host': '192.168.1.210', 'backend_port': '8080', 'use_https': False, 'ssl_certificate': '-6542632056687075849', 'enable_websocket': 'false', 'id': 6677094426382116252}], 'ssl_certificates': [{'id': -6542632056687075849, 'type': 'letsencrypt', 'domain_list': ['devo.g-server.site'], 'created_at': '2025-03-02 14:16:46', 'expires_at': '2025-05-31 14:16:54', 'status': 'active', 'path': '/etc/letsencrypt/live/-6542632056687075849'}], 'config': []}
+2025-03-02 14:25:58,366 - INFO - Nginix config file created: /etc/nginx/proxy_manager/8841765807783093505.conf
+2025-03-02 14:25:58,368 - INFO - Nginix config file created: /etc/nginx/proxy_manager/3567836873866336202.conf
+2025-03-02 14:25:58,370 - INFO - Nginix config file created: /etc/nginx/proxy_manager/6677094426382116252.conf
+2025-03-02 14:25:58,388 - INFO - Nginx successfully reloaded
+2025-03-02 14:25:58,388 - INFO - Applied all proxies
+2025-03-02 14:25:58,388 - INFO - Proxy created: ['devo.g-server.site']
+2025-03-02 14:26:41,751 - INFO - Server started on 0.0.0.0:8080
+2025-03-02 14:26:44,810 - INFO - DB saved: {'proxies': [{'domains': ['devo.g-server.site'], 'backend_host': '192.168.1.210', 'backend_port': '8080', 'use_https': False, 'ssl_certificate': '-6542632056687075849', 'enable_websocket': 'false', 'id': -3157888638840259804}], 'ssl_certificates': [{'id': -6542632056687075849, 'type': 'letsencrypt', 'domain_list': ['devo.g-server.site'], 'created_at': '2025-03-02 14:16:46', 'expires_at': '2025-05-31 14:16:54', 'status': 'active', 'path': '/etc/letsencrypt/live/-6542632056687075849'}], 'config': []}
+2025-03-02 14:26:44,813 - INFO - Nginix config file created: /etc/nginx/proxy_manager/-3157888638840259804.conf
+2025-03-02 14:26:44,827 - INFO - Nginx successfully reloaded
+2025-03-02 14:26:44,827 - INFO - Applied all proxies
+2025-03-02 14:26:44,828 - INFO - Proxy created: ['devo.g-server.site']
+2025-03-02 14:28:36,340 - INFO - Server started on 0.0.0.0:8080
+2025-03-02 14:28:48,415 - INFO - Richiesta certificato SSL di tipo cloudflare
+2025-03-02 14:28:48,415 - INFO - Domain list for certificate -d devo.g-server.site
+2025-03-02 14:29:09,649 - INFO - Certificato SSL generato con successo
+2025-03-02 14:29:09,649 - INFO - Succesfully generated cloudflare certificate
+2025-03-02 14:29:09,650 - INFO - DB saved: {'proxies': [], 'ssl_certificates': [{'id': 228705749817933363, 'type': 'cloudflare', 'domain_list': ['devo.g-server.site'], 'created_at': '2025-03-02 14:28:48', 'expires_at': '2025-05-31 14:29:09', 'status': 'active', 'path': '/etc/letsencrypt/live/228705749817933363'}], 'config': []}
+2025-03-02 14:29:45,230 - INFO - DB saved: {'proxies': [{'domains': ['devo.g-server.site'], 'backend_host': '192.168.1.210', 'backend_port': '8080', 'use_https': False, 'ssl_certificate': '228705749817933363', 'enable_websocket': 'false', 'id': -8940588934140867693}], 'ssl_certificates': [{'id': 228705749817933363, 'type': 'cloudflare', 'domain_list': ['devo.g-server.site'], 'created_at': '2025-03-02 14:28:48', 'expires_at': '2025-05-31 14:29:09', 'status': 'active', 'path': '/etc/letsencrypt/live/228705749817933363'}], 'config': []}
+2025-03-02 14:29:45,233 - INFO - Nginix config file created: /etc/nginx/proxy_manager/-8940588934140867693.conf
+2025-03-02 14:29:45,243 - INFO - Nginx successfully reloaded
+2025-03-02 14:29:45,243 - INFO - Applied all proxies
+2025-03-02 14:29:45,243 - INFO - Proxy created: ['devo.g-server.site']
+2025-03-02 14:36:57,439 - INFO - DB saved: {'proxies': [{'domains': ['devo.g-server.site'], 'backend_host': '192.168.1.210', 'backend_port': '8080', 'use_https': False, 'ssl_certificate': '228705749817933363', 'enable_websocket': 'false', 'id': -8940588934140867693}, {'domains': ['devo.g-server.site'], 'backend_host': '192.168.1.210', 'backend_port': '8080', 'use_https': False, 'ssl_certificate': '228705749817933363', 'enable_websocket': 'false', 'id': -9131008021005111049}], 'ssl_certificates': [{'id': 228705749817933363, 'type': 'cloudflare', 'domain_list': ['devo.g-server.site'], 'created_at': '2025-03-02 14:28:48', 'expires_at': '2025-05-31 14:29:09', 'status': 'active', 'path': '/etc/letsencrypt/live/228705749817933363'}], 'config': []}
+2025-03-02 14:36:57,477 - INFO - Nginix config file created: /etc/nginx/proxy_manager/-8940588934140867693.conf
+2025-03-02 14:36:57,478 - INFO - Nginix config file created: /etc/nginx/proxy_manager/-9131008021005111049.conf
+2025-03-02 14:36:57,522 - INFO - Nginx successfully reloaded
+2025-03-02 14:36:57,522 - INFO - Applied all proxies
+2025-03-02 14:36:57,523 - INFO - Proxy created: ['devo.g-server.site']
+2025-03-02 14:37:56,534 - INFO - Server started on 0.0.0.0:8080
+2025-03-02 14:37:58,557 - INFO - DB saved: {'proxies': [{'domains': ['devo.g-server.site'], 'backend_host': '192.168.1.210', 'backend_port': '8080', 'use_https': False, 'ssl_certificate': '228705749817933363', 'enable_websocket': 'false', 'id': -8940588934140867693}, {'domains': ['devo.g-server.site'], 'backend_host': '192.168.1.210', 'backend_port': '8080', 'use_https': False, 'ssl_certificate': '228705749817933363', 'enable_websocket': 'false', 'id': -9131008021005111049}, {'domains': ['devo.g-server.site'], 'backend_host': '192.168.1.210', 'backend_port': '8080', 'use_https': False, 'ssl_certificate': '228705749817933363', 'enable_websocket': 'false', 'id': -6588309857348019120}], 'ssl_certificates': [{'id': 228705749817933363, 'type': 'cloudflare', 'domain_list': ['devo.g-server.site'], 'created_at': '2025-03-02 14:28:48', 'expires_at': '2025-05-31 14:29:09', 'status': 'active', 'path': '/etc/letsencrypt/live/228705749817933363'}], 'config': []}
+2025-03-02 14:37:58,560 - INFO - Nginix config file created: /etc/nginx/proxy_manager/-8940588934140867693.conf
+2025-03-02 14:37:58,562 - INFO - Nginix config file created: /etc/nginx/proxy_manager/-9131008021005111049.conf
+2025-03-02 14:37:58,563 - INFO - Nginix config file created: /etc/nginx/proxy_manager/-6588309857348019120.conf
+2025-03-02 14:37:58,571 - INFO - Nginx successfully reloaded
+2025-03-02 14:37:58,571 - INFO - Applied all proxies
+2025-03-02 14:37:58,572 - INFO - Proxy created: ['devo.g-server.site']
+2025-03-02 14:38:08,802 - INFO - Richiesta certificato SSL di tipo cloudflare
+2025-03-02 14:38:08,802 - INFO - Domain list for certificate -d devo.g-server.site
+2025-03-02 14:38:31,358 - INFO - Certificato SSL generato con successo
+2025-03-02 14:38:31,358 - INFO - Succesfully generated cloudflare certificate
+2025-03-02 14:38:31,359 - INFO - DB saved: {'proxies': [{'domains': ['devo.g-server.site'], 'backend_host': '192.168.1.210', 'backend_port': '8080', 'use_https': False, 'ssl_certificate': '228705749817933363', 'enable_websocket': 'false', 'id': -8940588934140867693}, {'domains': ['devo.g-server.site'], 'backend_host': '192.168.1.210', 'backend_port': '8080', 'use_https': False, 'ssl_certificate': '228705749817933363', 'enable_websocket': 'false', 'id': -9131008021005111049}, {'domains': ['devo.g-server.site'], 'backend_host': '192.168.1.210', 'backend_port': '8080', 'use_https': False, 'ssl_certificate': '228705749817933363', 'enable_websocket': 'false', 'id': -6588309857348019120}], 'ssl_certificates': [{'id': 228705749817933363, 'type': 'cloudflare', 'domain_list': ['devo.g-server.site'], 'created_at': '2025-03-02 14:28:48', 'expires_at': '2025-05-31 14:29:09', 'status': 'active', 'path': '/etc/letsencrypt/live/228705749817933363'}, {'id': -7043489942279183079, 'type': 'cloudflare', 'domain_list': ['devo.g-server.site'], 'created_at': '2025-03-02 14:38:08', 'expires_at': '2025-05-31 14:38:31', 'status': 'active', 'path': '/etc/letsencrypt/live/-7043489942279183079'}], 'config': []}
+2025-03-02 14:39:23,057 - INFO - DB saved: {'proxies': [{'domains': ['devo.g-server.site'], 'backend_host': '192.168.1.210', 'backend_port': '8080', 'use_https': False, 'ssl_certificate': '-7043489942279183079', 'enable_websocket': 'false', 'id': -5125408443080447238}], 'ssl_certificates': [{'id': -7043489942279183079, 'type': 'cloudflare', 'domain_list': ['devo.g-server.site'], 'created_at': '2025-03-02 14:38:08', 'expires_at': '2025-05-31 14:38:31', 'status': 'active', 'path': '/etc/letsencrypt/live/-7043489942279183079'}], 'config': []}
+2025-03-02 14:39:23,058 - INFO - Nginix config file created: /etc/nginx/proxy_manager/-5125408443080447238.conf
+2025-03-02 14:39:23,068 - INFO - Nginx successfully reloaded
+2025-03-02 14:39:23,069 - INFO - Applied all proxies
+2025-03-02 14:39:23,069 - INFO - Proxy created: ['devo.g-server.site']
+2025-03-03 10:18:52,509 - INFO - Server started on 0.0.0.0:8080
+2025-03-03 10:25:19,803 - INFO - Richiesta certificato SSL di tipo cloudflare
+2025-03-03 10:25:19,803 - INFO - Domain list for certificate -d devo.g-server.site
+2025-03-03 10:25:40,565 - ERROR - Errore nella generazione del certificato SSL per 256
+2025-03-03 10:27:39,379 - INFO - Richiesta certificato SSL di tipo cloudflare
+2025-03-03 10:27:39,379 - INFO - Domain list for certificate -d devo.g-server.site
+2025-03-03 10:28:01,890 - INFO - Certificato SSL generato con successo
+2025-03-03 10:28:01,890 - INFO - Succesfully generated cloudflare certificate
+2025-03-03 10:28:01,890 - INFO - DB saved: {'proxies': [], 'ssl_certificates': [{'id': -38189438826288307, 'type': 'cloudflare', 'domain_list': ['devo.g-server.site'], 'created_at': '2025-03-03 10:27:39', 'expires_at': '2025-06-01 10:28:01', 'status': 'active', 'path': '/etc/letsencrypt/live/-38189438826288307'}], 'config': []}
+2025-03-03 10:30:17,526 - INFO - DB saved: {'proxies': [{'domains': ['devo.g-server.site'], 'backend_host': '192.168.1.210', 'backend_port': '8080', 'use_https': False, 'ssl_certificate': '-38189438826288307', 'enable_websocket': 'false', 'id': 9172614713144695379}], 'ssl_certificates': [{'id': -38189438826288307, 'type': 'cloudflare', 'domain_list': ['devo.g-server.site'], 'created_at': '2025-03-03 10:27:39', 'expires_at': '2025-06-01 10:28:01', 'status': 'active', 'path': '/etc/letsencrypt/live/-38189438826288307'}], 'config': []}
+2025-03-03 10:30:17,544 - INFO - Nginix config file created: /etc/nginx/proxy_manager/9172614713144695379.conf
+2025-03-03 10:30:17,580 - INFO - Nginx successfully reloaded
+2025-03-03 10:30:17,580 - INFO - Applied all proxies
+2025-03-03 10:30:17,580 - INFO - Proxy created: ['devo.g-server.site']
+2025-03-03 12:27:38,016 - INFO - Server started on 0.0.0.0:8080
+2025-03-03 12:28:05,574 - ERROR - Error: unbound method datetime.timestamp() needs an argument

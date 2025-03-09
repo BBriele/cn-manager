@@ -2,6 +2,11 @@ server {
     listen 80;
     server_name {{ domain }};
 
+    {% if ssl_certificate %}
+    ssl_certificate /etc/letsencrypt/live/{{ ssl_certificate }}/live/{{ domain }}/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/{{ ssl_certificate }}/live/{{ domain }}/privkey.pem;
+    {% endif %}
+
     location / {
         proxy_pass http://{{ backend_host }}:{{ backend_port }};
         proxy_set_header Host $host;

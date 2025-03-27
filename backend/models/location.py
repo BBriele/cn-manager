@@ -5,6 +5,7 @@ import uuid
 class Location(BaseModel):
     id: str = uuid.uuid4()  # Generate a unique ID
     name: str
+    
     model_config = {
         "json_schema_extra": {
             "example": {

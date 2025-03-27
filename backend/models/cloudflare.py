@@ -1,21 +1,42 @@
-from pydantic import BaseModel, SecretStr
 import uuid
-import time
+from datetime import datetime
+from models.base_model import BaseModel
 
 class CloudflareConfig(BaseModel):
-    id: str = str(uuid.uuid4())  # Generate a unique ID
-    api_token: SecretStr
-    zone_id: str
+    schema = {
+        **BaseModel.schema,
+        'api_token': {'type': str, 'required': True},
+        'zone_id': {'type': str, 'required': True}
+    }
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.api_token = kwargs.get('api_token')
+        self.zone_id = kwargs.get('zone_id')
 
     def get_api_token(self) -> str:
-        return self.api_token.get_secret_value()
+        return self.api_token
 
-    model_config = {
-        "json_schema_extra": {
-            "example": {
-                "id": "unique_id",
-                "api_token": "your_cloudflare_api_token",
-                "zone_id": "your_cloudflare_zone_id"
-            }
-        }
-    }
+    def get_zone_id(self) -> str:
+        return self.zone_id
+
+    def set_api_token(self, api_token: str):
+        self.api_token = api_token
+        self.updated_at = datetime.utcnow()
+
+    def set_zone_id(self, zone_id: str):
+        self.zone_id = zone_id
+        self.updated_at = datetime.utcnow()
+
+    def to_dict(self):
+        data = super().to_dict()
+        data['api_token'] = self.api_token
+        data['zone_id'] = self.zone_id
+        return data
+
+    @classmethod
+    def get_by_zone_id(cls, items, zone_id):
+        """
+        Specific method to get Cloudflare configs by zone_id.
+        """
+        return cls.get_by(items, 'zone_id', zone_id)

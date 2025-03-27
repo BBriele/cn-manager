@@ -1,12 +1,13 @@
 import json
 from typing import List, Dict, Type, Optional
-from pydantic import BaseModel
+from models.base_model import BaseModel
 from models.domain import Domain
 from models.cloudflare import CloudflareConfig
 from models.certificate import Certificate
 from models.nginx_config import NginxConfig
 from models.proxy_rule import ProxyRule
 import logging
+from datetime import datetime
 
 logger = logging.getLogger(__name__)
 
@@ -58,12 +59,13 @@ class DatabaseManager:
 
     def create(self, model_name: str, item: BaseModel):
         # Logging: Creating a new item
+        print("quii2")
         logger.info(f"Creating a new item in {model_name}: {item.id}")
         if model_name not in self.data:
             self.data[model_name] = {}
 
         item_id = item.id
-        self.data[model_name][item_id] = item.model_dump()
+        self.data[model_name][item_id] = item.to_dict()
         self._save_data()
         # Logging: Item created successfully
         logger.info(f"Item created successfully in {model_name}: {item.id}")
@@ -86,7 +88,8 @@ class DatabaseManager:
         # Logging: Updating an item
         logger.info(f"Updating item {item_id} in {model_name}")
         if model_name in self.data and item_id in self.data[model_name]:
-            self.data[model_name][item_id] = item.model_dump()
+            item.updated_at = datetime.utcnow()
+            self.data[model_name][item_id] = item.to_dict()
             self._save_data()
             # Logging: Item updated successfully
             logger.info(f"Item {item_id} updated successfully in {model_name}")

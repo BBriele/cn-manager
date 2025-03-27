@@ -1,16 +1,32 @@
-from pydantic import BaseModel
 import uuid
-import time
+from datetime import datetime
+from models.base_model import BaseModel
 
 class ProxyRule(BaseModel):
-    id: int = str(uuid.uuid4())  # Generate a unique ID
-    nginx_config_id: int
-
-    model_config = {
-        "json_schema_extra": {
-            "example": {
-                "id": "unique_id",
-                "nginx_config_id": "unique_id"
-            }
-        }
+    schema = {
+        **BaseModel.schema,
+        'nginx_config_id': {'type': str, 'required': True}
     }
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.nginx_config_id = kwargs.get('nginx_config_id')
+
+    def get_nginx_config_id(self) -> str:
+        return self.nginx_config_id
+
+    def set_nginx_config_id(self, nginx_config_id: str):
+        self.nginx_config_id = nginx_config_id
+        self.updated_at = datetime.utcnow()
+
+    def to_dict(self):
+        data = super().to_dict()
+        data['nginx_config_id'] = self.nginx_config_id
+        return data
+
+    @classmethod
+    def get_by_nginx_config_id(cls, items, nginx_config_id):
+        """
+        Specific method to get proxy rules by nginx_config_id.
+        """
+        return cls.get_by(items, 'nginx_config_id', nginx_config_id)

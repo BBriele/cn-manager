@@ -3,6 +3,7 @@ import datetime
 from models.base_model import BaseModel
 
 class Domain(BaseModel):
+    model_name = "domains"  # Define the model name
     schema = {
         **BaseModel.schema,
         'name': {'type': str, 'required': True}

@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Create DNS Configuration</h2>
+
+    {% if errors %}
+        <div class="alert alert-danger">
+            <ul class="mb-0">
+                {% for error in errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+
+    <form method="POST" action="{{ url_for('dns_config.create_dns_config') }}" class="needs-validation" novalidate>
+        <div class="mb-3">
+            <label for="provider_type" class="form-label">Provider Type</label>
+            <select class="form-select" id="provider_type" name="provider_type" required>
+                <option value="">Select a provider</option>
+                <option value="cloudflare">Cloudflare</option>
+                <option value="aws_route53">AWS Route53</option>
+                <option value="google_cloud_dns">Google Cloud DNS</option>
+            </select>
+            <div class="invalid-feedback">
+                Please select a provider type.
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label for="config_data" class="form-label">Configuration Data (JSON)</label>
+            <textarea class="form-control" id="config_data" name="config_data" rows="6" required
+                      placeholder='{
+    "api_key": "your-api-key",
+    "zone_id": "your-zone-id",
+    "email": "your-email@example.com"
+}'></textarea>
+            <div class="invalid-feedback">
+                Please provide valid JSON configuration data.
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <button type="submit" class="btn btn-primary">Create DNS Config</button>
+            <a href="{{ url_for('dns_config.dns_config_list') }}" class="btn btn-secondary">Cancel</a>
+        </div>
+    </form>
+</div>
+
+<script>
+// Form validation
+(function () {
+    'use strict'
+    var forms = document.querySelectorAll('.needs-validation')
+    Array.prototype.slice.call(forms)
+        .forEach(function (form) {
+            form.addEventListener('submit', function (event) {
+                if (!form.checkValidity()) {
+                    event.preventDefault()
+                    event.stopPropagation()
+                }
+                form.classList.add('was-validated')
+            }, false)
+        })
+})()
+
+// JSON validation
+document.getElementById('config_data').addEventListener('change', function(e) {
+    try {
+        JSON.parse(e.target.value);
+        e.target.setCustomValidity('');
+    } catch (error) {
+        e.target.setCustomValidity('Please enter valid JSON');
+    }
+});
+</script>
+{% endblock %}

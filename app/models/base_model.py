@@ -1,6 +1,10 @@
 import uuid
 from datetime import datetime
 
+from services.database_manager import DatabaseManager
+
+db_manager = DatabaseManager()
+
 class BaseModel:
     schema = {
         'id': {'type': str, 'required': True},
@@ -53,3 +57,55 @@ class BaseModel:
         Generic method to get items by a specific attribute.
         """
         return [item for item in items if getattr(item, attribute) == value]
+    
+    @classmethod
+    def get_all(cls, items):
+        """
+        Generic method to get all items of a specific class.
+        """
+        return [item for item in items if isinstance(item, cls)]
+
+    @classmethod
+    def create(cls, item):
+        """
+        Create a new item in the database.
+        """
+        if cls.model_name is None:
+            raise ValueError("model_name must be defined in the child class")
+        db_manager.create(cls.model_name, item)
+
+    @classmethod
+    def get(cls, item_id: str):
+        """
+        Get an item from the database by ID.
+        """
+        if cls.model_name is None:
+            raise ValueError("model_name must be defined in the child class")
+        return BaseModel.db_manager.get(cls.model_name, item_id)
+
+    @classmethod
+    def update(cls, item_id: str, item):
+        """
+        Update an item in the database.
+        """
+        if cls.model_name is None:
+            raise ValueError("model_name must be defined in the child class")
+        BaseModel.db_manager.update(cls.model_name, item_id, item)
+
+    @classmethod
+    def delete(cls, item_id: str):
+        """
+        Delete an item from the database.
+        """
+        if cls.model_name is None:
+            raise ValueError("model_name must be defined in the child class")
+        BaseModel.db_manager.delete(cls.model_name, item_id)
+
+    @classmethod
+    def list(cls):
+        """
+        List all items from the database.
+        """
+        if cls.model_name is None:
+            raise ValueError("model_name must be defined in the child class")
+        return BaseModel.db_manager.list(cls.model_name)

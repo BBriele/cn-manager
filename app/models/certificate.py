@@ -7,6 +7,7 @@ from models.base_model import BaseModel
 from models.dns_config import DNSConfig
 
 class Certificate(BaseModel):
+    model_name = "certificates"  # Define the model name
     schema = {
         **BaseModel.schema,
         'email': {'type': str, 'required': True},

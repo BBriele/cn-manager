@@ -3,6 +3,7 @@ from datetime import datetime
 from models.base_model import BaseModel
 
 class ProxyRule(BaseModel):
+    model_name = "proxy_rules"  # Define the model name
     schema = {
         **BaseModel.schema,
         'nginx_config_id': {'type': str, 'required': True}

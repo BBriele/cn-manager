@@ -4,6 +4,7 @@ from models.base_model import BaseModel
 import json
 
 class DNSConfig(BaseModel):
+    model_name = "dns_configs"  # Define the model name
     schema = {
         **BaseModel.schema,
         'provider_type': {'type': str, 'required': True},

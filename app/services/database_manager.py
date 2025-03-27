@@ -2,7 +2,7 @@ import json
 from typing import List, Dict, Type, Optional
 from models.base_model import BaseModel
 from models.domain import Domain
-from models.cloudflare import CloudflareConfig
+from models.dns_config import DNSConfig
 from models.certificate import Certificate
 from models.nginx_config import NginxConfig
 from models.proxy_rule import ProxyRule
@@ -13,7 +13,7 @@ logger = logging.getLogger(__name__)
 
 MODEL_MAP = {
     "domains": Domain,
-    "cloudflare_configs": CloudflareConfig,
+    "dns_configs": DNSConfig,
     "certificates": Certificate,
     "nginx_configs": NginxConfig,
     "proxy_rules": ProxyRule,

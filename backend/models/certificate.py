@@ -1,7 +1,7 @@
 import uuid
 from datetime import datetime
 from typing import List, Optional
-from backend.models.base_model import BaseModel
+from models.base_model import BaseModel
 #from models.domain import Domain
 #from models.cloudflare import CloudflareConfig
 from models.dns_config import DNSConfig

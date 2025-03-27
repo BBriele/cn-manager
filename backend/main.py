@@ -1,6 +1,12 @@
 from flask import Flask
 from routes import general, config, certs, domain
 import config as app_config
+import logging
+
+# Configure logging
+logging.basicConfig(level=logging.INFO,
+                    format='%(asctime)s - %(name)s - %(levelname)s - %(filename)s:%(lineno)d - %(message)s')
+logger = logging.getLogger(__name__)
 
 app = Flask(__name__)
 app.config.from_object(app_config.Config)

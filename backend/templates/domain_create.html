@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create Domain</title>
+</head>
+<body>
+    <h1>Create Domain</h1>
+    {% if errors %}
+        <div style="color: red;">
+            <ul>
+                {% for error in errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+    <form method="post">
+        <label for="name">Domain Name:</label><br>
+        <input type="text" id="name" name="name"><br><br>
+
+        <input type="submit" value="Create">
+    </form>
+    <a href="{{ url_for('domain.domain_list') }}">Back to List</a>
+</body>
+</html>

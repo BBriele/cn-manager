@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Nginx Configurations</title>
+</head>
+<body>
+    <h1>Nginx Configurations</h1>
+    <ul>
+        {% for config in configs %}
+            <li>{{ config.server_name }} -> {{ config.proxy_pass }}</li>
+        {% endfor %}
+    </ul>
+    <a href="{{ url_for('config.create_config') }}">Create New Configuration</a>
+</body>
+</html>

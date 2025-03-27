@@ -5,3 +5,7 @@ certbot-nginx
 certbot-dns-cloudflare
 dotenv
 python-cloudflare
+Flask
+python-nginx
+requests
+pydantic

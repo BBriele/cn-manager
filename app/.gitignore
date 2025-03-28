@@ -6,4 +6,4 @@ lib64
 include
 db.json
 cn_manager.log
-pyenv.cfg
+pyvenv.cfg

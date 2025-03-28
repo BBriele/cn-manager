@@ -1,7 +1,7 @@
 __pycache__/
 .venv
-bin
-lib
+bin/
+lib/
 lib64
 include
 db.json

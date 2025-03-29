@@ -1,96 +1,90 @@
 import uuid
 from datetime import datetime
-
-from services.database_manager import DatabaseManager
-
-db_manager = DatabaseManager()
+from db_manager import db  # Usa il database manager globale
 
 class BaseModel:
     schema = {
         'id': {'type': str, 'required': True},
         'created_at': {'type': datetime, 'required': True},
         'updated_at': {'type': datetime, 'required': True},
-        # Add other fields and their constraints here
     }
 
+    model_name = None  # Ogni modello figlio deve definirlo
+
     def __init__(self, **kwargs):
+        """
+        Initialize the model with default values and any provided keyword arguments.
+        """
         self.id = str(uuid.uuid4())
         self.created_at = datetime.utcnow()
         self.updated_at = datetime.utcnow()
-        print("base_mode pre validate")
-        self.validate()  # Validate the instance variables
-        print("base_mode middle init")
+
         for key, value in kwargs.items():
-            if key in self.schema:  # Only set attributes defined in the schema
+            if key in self.schema:  # Ensure only allowed attributes are set
                 setattr(self, key, value)
+
+        self.validate()  # Validate the instance
 
     def __repr__(self):
         return f"<{self.__class__.__name__} id={self.id}>"
 
     def to_dict(self):
+        """
+        Convert the object into a dictionary.
+        """
         return {
-            'id': str(self.id),
-            'created_at': str(self.created_at),
-            'updated_at': str(self.updated_at),
+            'id': self.id,
+            'created_at': self.created_at.isoformat(),
+            'updated_at': self.updated_at.isoformat(),
         }
 
     def validate(self):
         """
-        Validates the instance variables against the schema.
+        Validate the instance variables based on the schema.
         """
-        print("base_mode start validate")
         for field, constraints in self.schema.items():
             if not hasattr(self, field) and constraints.get('required', False):
                 raise ValueError(f"Field '{field}' is required")
             if hasattr(self, field):
-                print("base_mode hasattr validate")
                 value = getattr(self, field)
-                print(value)
                 if 'type' in constraints and not isinstance(value, constraints['type']):
                     raise TypeError(f"Field '{field}' must be of type {constraints['type']}")
                 if 'validator' in constraints:
                     constraints['validator'](value)
 
     @classmethod
-    def get_by(cls, items, attribute, value):
+    def create(cls, **kwargs):
         """
-        Generic method to get items by a specific attribute.
-        """
-        return [item for item in items if getattr(item, attribute) == value]
-    
-    @classmethod
-    def get_all(cls, items):
-        """
-        Generic method to get all items of a specific class.
-        """
-        return [item for item in items if isinstance(item, cls)]
-
-    @classmethod
-    def create(cls, item):
-        """
-        Create a new item in the database.
+        Create a new instance and save it to the database.
         """
         if cls.model_name is None:
             raise ValueError("model_name must be defined in the child class")
-        db_manager.create(cls.model_name, item)
+        
+        instance = cls(**kwargs)
+        db.create(cls.model_name, instance.to_dict())
+        return instance
 
     @classmethod
     def get(cls, item_id: str):
         """
-        Get an item from the database by ID.
+        Retrieve an item from the database by its ID.
         """
         if cls.model_name is None:
             raise ValueError("model_name must be defined in the child class")
-        return BaseModel.db_manager.get(cls.model_name, item_id)
+
+        results = db.read(cls.model_name, {'id': item_id})
+        return results[0] if results else None
 
     @classmethod
-    def update(cls, item_id: str, item):
+    def update(cls, item_id: str, **kwargs):
         """
         Update an item in the database.
         """
         if cls.model_name is None:
             raise ValueError("model_name must be defined in the child class")
-        BaseModel.db_manager.update(cls.model_name, item_id, item)
+        
+        kwargs['updated_at'] = datetime.utcnow().isoformat()  # Update timestamp
+        return db.update(cls.model_name, {'id': item_id}, kwargs)
 
     @classmethod
     def delete(cls, item_id: str):
@@ -99,13 +93,15 @@ class BaseModel:
         """
         if cls.model_name is None:
             raise ValueError("model_name must be defined in the child class")
-        BaseModel.db_manager.delete(cls.model_name, item_id)
+        
+        return db.delete(cls.model_name, {'id': item_id})
 
     @classmethod
     def list(cls):
         """
-        List all items from the database.
+        List all items of this model from the database.
         """
         if cls.model_name is None:
             raise ValueError("model_name must be defined in the child class")
-        return BaseModel.db_manager.list(cls.model_name)
+        
+        return db.read(cls.model_name)

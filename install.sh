@@ -1,5 +1,5 @@
 #!/bin/bash
-# filepath: setup.sh
+# filepath: install.sh
 
 set -e  # Exit immediately if a command exits with a non-zero status.
 
@@ -9,15 +9,24 @@ apt-get update -y
 
 # --- Install Dependencies ---
 echo "Installing dependencies: python3, python3-venv, postgresql, nginx..."
-apt-get install -y python3 python3-venv postgresql nginx
+apt-get install -y sudo python3 python3-venv postgresql nginx
+
+# --- Project Directory ---
+PROJECT_DIR="." # Replace with your actual project directory
+
+# --- Application Directory ---
+APP_DIR="$PROJECT_DIR/app"
 
 # --- Create Project Directory (if it doesn't exist) ---
-PROJECT_DIR="/root/cn-manager" # Replace with your actual project directory
 echo "Creating project directory: $PROJECT_DIR"
 mkdir -p "$PROJECT_DIR"
 
+# --- Create Application Directory (if it doesn't exist) ---
+echo "Creating application directory: $APP_DIR"
+mkdir -p "$APP_DIR"
+
 # --- Create Virtual Environment ---
-VENV_DIR="$PROJECT_DIR/venv"
+VENV_DIR="$APP_DIR/.venv"
 echo "Creating virtual environment in: $VENV_DIR"
 python3 -m venv "$VENV_DIR"
 
@@ -33,6 +42,8 @@ if [ ! -f "$REQUIREMENTS_FILE" ]; then
   echo "No requirements.txt found. Creating a dummy one."
   touch "$REQUIREMENTS_FILE"
 fi
+
+cd app # Change to the app directory
 
 echo "Installing Python requirements from: $REQUIREMENTS_FILE"
 pip install --upgrade pip  # Upgrade pip
@@ -56,7 +67,7 @@ server {
 " > "$NGINX_CONFIG"
 
 ln -s "$NGINX_CONFIG" /etc/nginx/sites-enabled/
-rm /etc/nginx/sites-enabled/default # Remove default config
+rm -rf /etc/nginx/sites-enabled/default # Remove default config
 
 nginx -t # Test nginx configuration
 systemctl restart nginx

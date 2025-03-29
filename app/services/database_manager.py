@@ -1,125 +1,95 @@
 import json
-from typing import List, Dict, Type, Optional
-from models.base_model import BaseModel
-from models.domain import Domain
-from models.dns_config import DNSConfig
-from models.certificate import Certificate
-from models.nginx_config import NginxConfig
-from models.proxy_rule import ProxyRule
-import logging
-from datetime import datetime
-
-logger = logging.getLogger(__name__)
-
-MODEL_MAP = {
-    "domains": Domain,
-    "dns_configs": DNSConfig,
-    "certificates": Certificate,
-    "nginx_configs": NginxConfig,
-    "proxy_rules": ProxyRule,
-}
+import os
+from typing import Any, Dict, List, Optional
 
 class DatabaseManager:
-    def __init__(self, db_file: str = 'db.json'):
-        self.db_file = db_file
-        # Logging: Database initialization
-        logger.info(f"Initializing DatabaseManager with db_file: {self.db_file}")
-        self.data: Dict[str, Dict[str, dict]] = self._load_data()
+    """
+    A simple JSON-based database manager that supports CRUD operations generically,
+    handling multiple entity types dynamically based on their schema.
+    """
 
-    def _load_data(self) -> Dict[str, Dict[str, dict]]:
-        # Logging: Loading data from database
-        logger.info(f"Loading data from database file: {self.db_file}")
-        try:
-            with open(self.db_file, 'r') as f:
-                try:
-                    data = json.load(f)
-                    # Convert data to the correct format
-                    for model_name, items in data.items():
-                        if not isinstance(items, dict):
-                            data[model_name] = {}
-                    # Logging: Data loaded successfully
-                    logger.info(f"Data loaded successfully from {self.db_file}")
-                    return data
-                except json.JSONDecodeError:
-                    # Logging: Invalid JSON in database file
-                    logger.warning(f"Invalid JSON in database file: {self.db_file}. Returning empty dictionary.")
-                    return {}
-        except FileNotFoundError:
-            # Logging: Database file not found
-            logger.warning(f"Database file not found: {self.db_file}")
-            return {}
+    def __init__(self, filename: str):
+        """
+        Initialize the DatabaseManager with the given filename.
+        """
+        self.filename = filename
+        self._ensure_file()
 
-    def _save_data(self):
-        # Logging: Saving data to database
-        logger.info(f"Saving data to database file: {self.db_file}")
-        with open(self.db_file, 'w') as f:
-            json.dump(self.data, f, indent=4)
-        # Logging: Data saved successfully
-        logger.info(f"Data saved successfully to {self.db_file}")
+    def _ensure_file(self) -> None:
+        """
+        Ensure the JSON file exists; if not, create an empty JSON structure.
+        """
+        if not os.path.exists(self.filename):
+            with open(self.filename, 'w', encoding='utf-8') as file:
+                json.dump({}, file, indent=4)
 
-    def create(self, model_name: str, item: BaseModel):
-        # Logging: Creating a new item
-        print("quii2")
-        logger.info(f"Creating a new item in {model_name}: {item.id}")
-        if model_name not in self.data:
-            self.data[model_name] = {}
+    def _read_data(self) -> Dict[str, List[Dict[str, Any]]]:
+        """
+        Read the JSON file and return the data as a dictionary.
+        """
+        with open(self.filename, 'r', encoding='utf-8') as file:
+            return json.load(file)
 
-        item_id = item.id
-        self.data[model_name][item_id] = item.to_dict()
-        self._save_data()
-        # Logging: Item created successfully
-        logger.info(f"Item created successfully in {model_name}: {item.id}")
+    def _write_data(self, data: Dict[str, List[Dict[str, Any]]]) -> None:
+        """
+        Write the given data dictionary back to the JSON file.
+        """
+        with open(self.filename, 'w', encoding='utf-8') as file:
+            json.dump(data, file, indent=4)
 
-    def get(self, model_name: str, item_id: str) -> Optional[BaseModel]:
-        # Logging: Getting an item
-        logger.info(f"Getting item {item_id} from {model_name}")
-        if model_name in self.data and item_id in self.data[model_name]:
-            model_data = self.data[model_name][item_id]
-            model_class = MODEL_MAP.get(model_name)
-            if model_class:
-                # Logging: Item found
-                logger.info(f"Item {item_id} found in {model_name}")
-                return model_class(**model_data)
-        # Logging: Item not found
-        logger.warning(f"Item {item_id} not found in {model_name}")
-        return None
+    def create(self, entity_type: str, record: Dict[str, Any]) -> None:
+        """
+        Add a new record to the specified entity type.
+        """
+        data = self._read_data()
+        
+        if entity_type not in data:
+            data[entity_type] = []
+        
+        data[entity_type].append(record)
+        self._write_data(data)
 
-    def update(self, model_name: str, item_id: str, item: BaseModel):
-        # Logging: Updating an item
-        logger.info(f"Updating item {item_id} in {model_name}")
-        if model_name in self.data and item_id in self.data[model_name]:
-            item.updated_at = datetime.utcnow()
-            self.data[model_name][item_id] = item.to_dict()
-            self._save_data()
-            # Logging: Item updated successfully
-            logger.info(f"Item {item_id} updated successfully in {model_name}")
-        else:
-            # Logging: Item not found for update
-            logger.error(f"Item with id {item_id} not found in {model_name} for update")
-            raise ValueError(f"Item with id {item_id} not found in {model_name}")
+    def read(self, entity_type: str, filter_by: Optional[Dict[str, Any]] = None) -> List[Dict[str, Any]]:
+        """
+        Retrieve records of a specific entity type, optionally filtering them.
+        """
+        data = self._read_data()
+        records = data.get(entity_type, [])
 
-    def delete(self, model_name: str, item_id: str):
-        # Logging: Deleting an item
-        logger.info(f"Deleting item {item_id} from {model_name}")
-        if model_name in self.data and item_id in self.data[model_name]:
-            del self.data[model_name][item_id]
-            self._save_data()
-            # Logging: Item deleted successfully
-            logger.info(f"Item {item_id} deleted successfully from {model_name}")
-        else:
-            # Logging: Item not found for deletion
-            logger.error(f"Item with id {item_id} not found in {model_name} for deletion")
-            raise ValueError(f"Item with id {item_id} not found in {model_name}")
+        if filter_by:
+            records = [r for r in records if all(r.get(k) == v for k, v in filter_by.items())]
+        
+        return records
 
-    def list(self, model_name: str) -> List[BaseModel]:
-        # Logging: Listing items
-        logger.info(f"Listing items from {model_name}")
-        if model_name in self.data:
-            model_class = MODEL_MAP.get(model_name)
-            if model_class:
-                # Logging: Items listed successfully
-                logger.info(f"Items listed successfully from {model_name}")
-                return [model_class(**item) for item in self.data[model_name].values()]
-        # Logging: No items found
-        logger.warning(f"No items found in {model_name}")
-        return []
+    def update(self, entity_type: str, identifier: Dict[str, Any], updated_data: Dict[str, Any]) -> bool:
+        """
+        Update an existing record by matching it with an identifier.
+        Returns True if the update was successful, otherwise False.
+        """
+        data = self._read_data()
+        records = data.get(entity_type, [])
+        
+        for record in records:
+            if all(record.get(k) == v for k, v in identifier.items()):
+                record.update(updated_data)
+                self._write_data(data)
+                return True
+        
+        return False
+
+    def delete(self, entity_type: str, identifier: Dict[str, Any]) -> bool:
+        """
+        Delete a record by matching it with an identifier.
+        Returns True if deletion was successful, otherwise False.
+        """
+        data = self._read_data()
+        records = data.get(entity_type, [])
+        
+        new_records = [r for r in records if not all(r.get(k) == v for k, v in identifier.items())]
+        
+        if len(new_records) != len(records):
+            data[entity_type] = new_records
+            self._write_data(data)
+            return True
+        
+        return False

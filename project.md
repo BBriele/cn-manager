@@ -55,9 +55,6 @@ CN Manager is a Python-based application designed to simplify the management of 
 
 ### Planned
 
-*   **User Authentication and Authorization:**
-    *   Implement user accounts and roles.
-    *   Protect sensitive endpoints with authentication and authorization.
 *   **Improved Nginx Configuration Management:**
     *   More robust Nginx configuration generation.
     *   Support for different Nginx configuration templates.
@@ -91,6 +88,9 @@ CN Manager is a Python-based application designed to simplify the management of 
 *   **Location Management:**
     *   Create, list, update, and delete locations.
     *   [Location model](app/models/location.py) defines the structure of a location.
+*   **Optional User Authentication and Authorization:**
+    *   Implement user accounts and roles as an optional feature.
+    *   Protect sensitive endpoints with authentication and authorization when enabled.
 
 ## Technologies Used
 

@@ -7,6 +7,7 @@ import subprocess  # Per eseguire Certbot o ACME client
 
 import config as app_config
 from models.base_model import BaseModel
+from models.dns_provider import DNSProvider
 
 
 class DNSConfig(BaseModel):

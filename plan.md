@@ -1,0 +1,98 @@
+# CN Manager - Development Plan
+
+This document outlines the development plan for CN Manager, tracking implemented features and future tasks.
+
+## Implemented Features
+
+- [x] **Domain Management:**
+  - [x] Create domains
+  - [x] List domains
+  - [x] Update domains
+  - [x] Delete domains
+  - [x] Uses a [database manager](app/services/database_manager.py) for persistence.
+  - [x] [Domain model](app/models/domain.py) defines the structure of a domain.
+  - [x] [Domain controller](app/controllers/domain_controller.py) handles business logic.
+  - [x] [Routes](app/routes/domain.py) expose domain management endpoints.
+  - [x] Templates for listing ([domain_list.html](app/templates/domain_list.html)) and creating ([domain_create.html](app/templates/domain_create.html)) domains.
+- [x] **Nginx Configuration Management:**
+  - [x] Create Nginx configurations
+  - [x] List Nginx configurations
+  - [x] Update Nginx configurations
+  - [x] Delete Nginx configurations
+  - [x] Uses a [database manager](app/services/database_manager.py) for persistence.
+  - [x] [NginxConfig model](app/models/nginx_config.py) defines the structure of an Nginx configuration.
+  - [x] [NginxManager service](app/services/nginx_manager.py) handles Nginx configuration file generation and reloading.
+  - [x] [Routes](app/routes/config.py) expose Nginx configuration management endpoints.
+  - [x] Template for listing configurations ([config_list.html](app/templates/config_list.html)).
+- [x] **SSL Certificate Management:**
+  - [x] Generate SSL certificates using Certbot.
+  - [x] Uses a [database manager](app/services/database_manager.py) for persistence.
+  - [x] [Certificate model](app/models/certificate.py) defines the structure of a certificate.
+  - [x] [CertManager service](app/services/cert_manager.py) handles certificate generation using Certbot.
+  - [x] [Routes](app/routes/certs.py) expose certificate management endpoints.
+- [x] **DNS Configuration Management:**
+  - [x] Create DNS configurations
+  - [x] List DNS configurations
+  - [x] Update DNS configurations
+  - [x] Delete DNS configurations
+  - [x] Supports multiple DNS providers (Cloudflare, AWS Route53, Google Cloud DNS).
+  - [x] Uses a [database manager](app/services/database_manager.py) for persistence.
+  - [x] [DNSConfig model](app/models/dns_config.py) defines the structure of a DNS configuration.
+  - [x] [DNSConfigController](app/controllers/dns_config_controller.py) handles business logic.
+  - [x] [Routes](app/routes/dns_config.py) expose DNS configuration management endpoints.
+  - [x] Templates for listing ([dns_config/list.html](app/templates/dns_config/list.html)), creating ([dns_config/create.html](app/templates/dns_config/create.html)), and updating ([dns_config/update.html](app/templates/dns_config/update.html)) DNS configurations.
+- [x] **Custom DNS Provider Plugins:**
+  - [x] Dynamically load custom DNS provider plugins from the `plugins/custom_dns` directory.
+  - [x] [DNSProvider model](app/models/dns_provider.py) defines the interface for DNS providers.
+  - [x] Example plugin for Cloudflare ([cloudflare.py](app/plugins/custom_dns/cloudflare.py)).
+- [x] **Database Management:**
+  - [x] Uses a JSON file as a simple database.
+  - [x] [DatabaseManager service](app/services/database_manager.py) handles CRUD operations.
+- [x] **Configuration:**
+  - [x] Uses a [config.py](app/config.py) file for application settings.
+  - [x] Environment variables for sensitive information.
+- [x] **Logging:**
+  - [x] Configured logging to a file ([cn\_manager.log](app/.gitignore)).
+- [x] **Virtual Environment:**
+  - [x] Uses a virtual environment for dependency management.
+- [x] **Nginx Installation and Configuration:**
+  - [x] The [install.sh](install.sh) script automates the installation of Nginx and configures a basic Nginx configuration.
+
+## Planned Features
+
+- [ ] **Improved Nginx Configuration Management:**
+  - [ ] More robust Nginx configuration generation.
+  - [ ] Support for different Nginx configuration templates.
+  - [ ] Automated testing of Nginx configurations.
+- [ ] **Enhanced SSL Certificate Management:**
+  - [ ] Automated renewal of SSL certificates.
+  - [ ] Integration with different ACME clients.
+  - [ ] Support for wildcard certificates.
+- [ ] **DNS Record Management:**
+  - [ ] Automated DNS record creation and deletion for domain verification.
+  - [ ] Support for different DNS record types (A, CNAME, TXT, etc.).
+- [ ] **Web UI Improvements:**
+  - [ ] More user-friendly interface.
+  - [ ] Better error handling and feedback.
+  - [ ] AJAX for dynamic updates.
+- [ ] **API Endpoints:**
+  - [ ] Expose API endpoints for all features.
+  - [ ] Allow integration with other systems.
+- [ ] **Database Abstraction:**
+  - [ ] Support for different database backends (PostgreSQL, MySQL, etc.).
+  - [ ] Use an ORM for database interaction.
+- [ ] **Automated Testing:**
+  - [ ] Unit tests for all components.
+  - [ ] Integration tests for end-to-end functionality.
+- [ ] **Monitoring and Alerting:**
+  - [ ] Monitor the health of the application and Nginx.
+  - [ ] Send alerts on errors or performance issues.
+- [ ] **Proxy Rule Management:**
+  - [ ] Create, list, update, and delete proxy rules.
+  - [ ] [ProxyRule model](app/models/proxy_rule.py) defines the structure of a proxy rule.
+- [ ] **Location Management:**
+  - [ ] Create, list, update, and delete locations.
+  - [ ] [Location model](app/models/location.py) defines the structure of a location.
+- [ ] **Optional User Authentication and Authorization:**
+  - [ ] Implement user accounts and roles as an optional feature.
+  - [ ] Protect sensitive endpoints with authentication and authorization when enabled.

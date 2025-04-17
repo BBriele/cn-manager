@@ -25,8 +25,6 @@ file_handler.setFormatter(formatter)
 # Add the file handler to the logger
 logger.addHandler(file_handler)
 
-# Initialize SQLAlchemy
-db = SQLAlchemy()
 
 def create_app():
     app = Flask(__name__)

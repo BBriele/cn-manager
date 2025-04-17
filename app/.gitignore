@@ -4,6 +4,8 @@ bin
 lib
 lib64
 include
+
 db.json
 cn_manager.log
 pyvenv.cfg
+database.json

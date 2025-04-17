@@ -16,6 +16,7 @@ class BaseModel:
         Initialize the model with default values and any provided keyword arguments.
         """
         self.id = str(uuid.uuid4())
+        #set the default values for the created_at and updated_at in timestamp format
         self.created_at = datetime.utcnow()
         self.updated_at = datetime.utcnow()
 
@@ -23,20 +24,25 @@ class BaseModel:
             if key in self.schema:  # Ensure only allowed attributes are set
                 setattr(self, key, value)
 
+
         self.validate()  # Validate the instance
 
     def __repr__(self):
         return f"<{self.__class__.__name__} id={self.id}>"
+    
+    def items(self):
+        """
+        Return the items of the object.
+        """
+        return self.__dict__.items()
 
     def to_dict(self):
         """
         Convert the object into a dictionary.
         """
-        return {
-            'id': self.id,
-            'created_at': self.created_at.isoformat(),
-            'updated_at': self.updated_at.isoformat(),
-        }
+        
+        return self.__dict__.items()
+
 
     def validate(self):
         """
@@ -47,7 +53,7 @@ class BaseModel:
                 raise ValueError(f"Field '{field}' is required")
             if hasattr(self, field):
                 value = getattr(self, field)
-                if 'type' in constraints and not isinstance(value, constraints['type']):
+                if 'type' in constraints and not isinstance(value, constraints['type']): 
                     raise TypeError(f"Field '{field}' must be of type {constraints['type']}")
                 if 'validator' in constraints:
                     constraints['validator'](value)
@@ -105,3 +111,19 @@ class BaseModel:
             raise ValueError("model_name must be defined in the child class")
         
         return db.read(cls.model_name)
+    
+    
+    def to_json(self):
+        """
+        Convert the object in JSON-serializable.
+        """
+        x = {}
+        for key in self.schema.keys():
+            if getattr(self, key):
+                x[key] = getattr(self, key)
+        #convert the datetime to string
+        for key, value in x.items():
+            if isinstance(value, datetime):
+                x[key] = value.isoformat()
+                
+        return x

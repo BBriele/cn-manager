@@ -46,7 +46,7 @@ class DatabaseManager:
         if entity_type not in data:
             data[entity_type] = []
         
-        data[entity_type].append(record)
+        data[entity_type].append(record.to_json())
         self._write_data(data)
 
     def read(self, entity_type: str, filter_by: Optional[Dict[str, Any]] = None) -> List[Dict[str, Any]]:

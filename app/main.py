@@ -30,9 +30,6 @@ db = SQLAlchemy()
 
 def create_app():
     app = Flask(__name__)
-    app.config.from_object(app_config.Config)
-
-    db.init_app(app)  # Initialize SQLAlchemy with the app
 
     # Register blueprints
     app.register_blueprint(general.bp)

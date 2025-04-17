@@ -8,7 +8,7 @@ class DatabaseManager:
     handling multiple entity types dynamically based on their schema.
     """
 
-    def __init__(self, filename: str):
+    def __init__(self, filename: str = os.environ.get('DATABASE_FILE', 'database.json')) -> None:
         """
         Initialize the DatabaseManager with the given filename.
         """

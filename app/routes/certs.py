@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, redirect, url_for
-from controllers.certificate_controller import create_certificate, get_certificate, update_certificate, delete_certificate
+from controllers.certificate_controller import CertificateController
 
 bp = Blueprint('certs', __name__, url_prefix='/certs')
 
@@ -20,7 +20,7 @@ def create_cert():
                 "agree": request.form.get('agree') == 'on'
             }
 
-            create_certificate(certificate_data)
+            CertificateController.create_certificate(certificate_data)
 
             return redirect(url_for('certs.cert_list'))
         except Exception as e:

@@ -2,12 +2,11 @@ import nginx
 import os
 from models.nginx_config import NginxConfig
 from models.domain import Domain
-from services.database_manager import DatabaseManager
+from db_manager import db  # Usa il database manager globale
 
 class NginxManager:
     def __init__(self, config_dir='/etc/nginx/conf.d'):
         self.config_dir = config_dir
-        self.db_manager = DatabaseManager()
 
     def create_config(self, nginx_config: NginxConfig):
         '''
@@ -25,7 +24,7 @@ class NginxManager:
         server.add_location(location)
 
         if nginx_config.certificate_id:
-            certificate = self.db_manager.get("certificates", nginx_config.certificate_id)
+            certificate = db.get("certificates", nginx_config.certificate_id)
             if certificate:
                 server.add_directive('listen', '443 ssl')
                 server.add_directive('ssl_certificate', certificate.certificate_path)

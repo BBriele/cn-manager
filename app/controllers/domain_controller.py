@@ -1,10 +1,12 @@
-from models.domain import Domain
-from services.database_manager import DatabaseManager
+from flask import Blueprint, render_template, request, redirect, url_for
 import logging
+
+from models.domain import Domain
+from db_manager import db  # Usa il database manager globale
+
 
 logger = logging.getLogger(__name__)
 
-db_manager = DatabaseManager()
 
 class DomainController:
     """
@@ -24,7 +26,7 @@ class DomainController:
         try:
             print(domain_data)
             domain = Domain(**domain_data)
-            db_manager.create("domains", domain)
+            db.create("domains", domain)
             # Logging: Domain created successfully
             logger.info(f"Domain created successfully: {domain.id}")
             return domain
@@ -39,7 +41,7 @@ class DomainController:
         """
         Retrieves a domain from the database.
         """
-        domain = db_manager.get("domains", domain_id)
+        domain = db.get("domains", domain_id)
         if not domain:
             # Logging: Domain not found
             logger.warning(f"Domain with id {domain_id} not found")
@@ -56,7 +58,7 @@ class DomainController:
         """
         try:
             domain = Domain(**domain_data)
-            db_manager.update("domains", domain_id, domain)
+            db.update("domains", domain_id, domain)
             # Logging: Domain updated successfully
             logger.info(f"Domain updated successfully: {domain.id}")
             return domain
@@ -71,7 +73,7 @@ class DomainController:
         """
         Deletes a domain from the database.
         """
-        db_manager.delete("domains", domain_id)
+        db.delete("domains", domain_id)
         # Logging: Domain deleted successfully
         logger.info(f"Domain deleted successfully: {domain_id}")
 
@@ -81,7 +83,7 @@ class DomainController:
         """
         Lists all domains from the database.
         """
-        domains = db_manager.list("domains")
+        domains = db.list("domains")
         # Logging: Domains listed successfully
         logger.info(f"Listed {len(domains)} domains")
         return domains
@@ -92,7 +94,7 @@ class DomainController:
         """
         Retrieves a domain from the database by name.
         """
-        domains = list_domains()
+        domains = db()
         domain = Domain.get_by_name(domains, domain_name)
         if not domain:
             # Logging: Domain not found
@@ -101,3 +103,16 @@ class DomainController:
         # Logging: Domain found
         logger.info(f"Domain found: {domain.id}")
         return domain[0]
+
+#region View Functions
+
+    def view_domain_list():
+        """
+        Renders the domain list view.
+        """
+        domains = db.list("domains")
+        return render_template('domain/list.html', domains=domains)
+
+
+#endregion
+

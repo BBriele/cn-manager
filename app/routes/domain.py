@@ -5,8 +5,7 @@ bp = Blueprint('domain', __name__, url_prefix='/domain')
 
 @bp.route('/')
 def domain_list():
-    domains = DomainController.list_domains()
-    return render_template('domain_list.html', domains=domains)
+    return DomainController.view_domain_list()
 
 @bp.route('/create', methods=['GET', 'POST'])
 def create_domain():
@@ -18,6 +17,6 @@ def create_domain():
             DomainController.create_domain(domain_data)
             return redirect(url_for('domain.domain_list'))
         except Exception as e:
-            return render_template('domain_create.html', errors=[str(e)])
+            return render_template('domain/create.html', errors=[str(e)])
 
-    return render_template('domain_create.html', errors=None)
+    return render_template('domain/create.html', errors=None)

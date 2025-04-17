@@ -1,8 +1,7 @@
 from models.certificate import Certificate
-from services.database_manager import DatabaseManager
 from services.cert_manager import CertManager  # Assuming you'll have a CertManager
+from db_manager import db  # Usa il database manager globale
 
-db_manager = DatabaseManager()
 cert_manager = CertManager()  # Initialize CertManager
 
 class CertificateController:
@@ -17,14 +16,14 @@ class CertificateController:
         """
         try:
             certificate = Certificate(**certificate_data)
-            db_manager.create("certificates", certificate)
+            db.create("certificates", certificate)
 
             # Generate the certificate using CertManager
             cert_manager.generate_certificate(certificate)
 
             # Update the certificate in the database with the generated paths
-            updated_certificate = db_manager.get("certificates", certificate.id)
-            db_manager.update("certificates", certificate.id, updated_certificate)
+            updated_certificate = db.get("certificates", certificate.id)
+            db.update("certificates", certificate.id, updated_certificate)
 
             return updated_certificate
         except Exception as e:
@@ -34,7 +33,7 @@ class CertificateController:
         """
         Retrieves a certificate from the database.
         """
-        return db_manager.get("certificates", certificate_id)
+        return db.get("certificates", certificate_id)
 
     def update_certificate(certificate_id: str, certificate_data: dict):
         """
@@ -42,7 +41,7 @@ class CertificateController:
         """
         try:
             certificate = Certificate(**certificate_data)
-            db_manager.update("certificates", certificate_id, certificate)
+            db.update("certificates", certificate_id, certificate)
             return certificate
         except Exception as e:
             raise e
@@ -51,4 +50,4 @@ class CertificateController:
         """
         Deletes a certificate from the database.
         """
-        db_manager.delete("certificates", certificate_id)
+        db.delete("certificates", certificate_id)

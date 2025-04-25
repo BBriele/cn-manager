@@ -6,7 +6,7 @@ bp = Blueprint('certs', __name__, url_prefix='/certs')
 @bp.route('/')
 def cert_list():
     # TODO: Implement listing certificates
-    return render_template('cert_list.html')
+    return render_template('components/cert_list.html')
 
 @bp.route('/create', methods=['GET', 'POST'])
 def create_cert():
@@ -24,6 +24,6 @@ def create_cert():
 
             return redirect(url_for('certs.cert_list'))
         except Exception as e:
-            return render_template('cert_create.html', errors=[str(e)])
+            return render_template('components/cert_create.html', errors=[str(e)])
 
-    return render_template('cert_create.html', errors=None)
+    return render_template('components/cert_create.html', errors=None)

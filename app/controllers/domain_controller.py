@@ -104,14 +104,33 @@ class DomainController:
 
 #region View Functions
 
-    def view_domain_list():
+    def list_view():
         #logging: Rendering domain list view
         logger.info("Rendering domain list view")
         """
         Renders the domain list view.
         """
         domains = db.list("domains")
-        return render_template('domain/list.html', domains=domains)
+        return render_template('components/domain/list.html', domains=domains)
+    
+    @classmethod
+    def create_view(cls, request):
+        #logging: Rendering create domain view
+        logger.info("Rendering create domain view")
+        """
+        Renders the create domain view.
+        """
+        if request.method == 'POST':
+            try:
+                domain_data = {
+                    "name": request.form['name']
+                }
+                cls.create_domain(domain_data)
+                return redirect(url_for('domain.domain_list'))
+            except Exception as e:
+                return render_template('components/domain/create.html', errors=[str(e)])
+
+        return render_template('components/domain/create.html', errors=None)
 
 
 #endregion

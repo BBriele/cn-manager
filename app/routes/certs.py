@@ -4,12 +4,12 @@ from controllers.certificate_controller import CertificateController
 bp = Blueprint('certs', __name__, url_prefix='/certs')
 
 @bp.route('/')
-def cert_list():
+def list():
     # TODO: Implement listing certificates
     return render_template('components/cert_list.html')
 
 @bp.route('/create', methods=['GET', 'POST'])
-def create_cert():
+def create():
     if request.method == 'POST':
         try:
             certificate_data = {

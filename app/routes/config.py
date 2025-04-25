@@ -7,13 +7,13 @@ bp = Blueprint('config', __name__, url_prefix='/config')
 nginx_manager = NginxManager()
 
 @bp.route('/')
-def config_list():
+def list():
     # This is just a placeholder, you'll need to read the actual configs
     configs = [NginxConfig("example.com", "http://localhost:8080")]
     return render_template('config_list.html', configs=configs)
 
 @bp.route('/create', methods=['GET', 'POST'])
-def create_config():
+def create():
     if request.method == 'POST':
         server_name = request.form['server_name']
         proxy_pass = request.form['proxy_pass']

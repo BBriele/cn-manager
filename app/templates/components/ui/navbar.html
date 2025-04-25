@@ -1,0 +1,41 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="/">Home</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav">
+        {% set menu_items = [
+            {
+              'title': 'Domains',
+              'submenus': [
+                {'label': 'List all', 'url': url_for('domain.list')},
+                {'label': 'Add new', 'url': url_for('domain.create')}
+              ]
+            },
+            {
+              'title': 'Menu 2',
+              'submenus': [
+                {'label': 'Submenu 2.1', 'url': '#'},
+                {'label': 'Submenu 2.2', 'url': '#'},
+                {'label': 'Submenu 2.3', 'url': '#'}
+              ]
+            },
+            {
+              'title': 'Menu 3',
+              'submenus': [
+                {'label': 'Submenu 3.1', 'url': '#'},
+                {'label': 'Submenu 3.2', 'url': '#'},
+                {'label': 'Submenu 3.3', 'url': '#'}
+              ]
+            }
+          ] %}
+    
+          {% for item in menu_items %}
+            {% with menu_title = item.title, submenu_items = item.submenus %}
+                {% include 'components/ui/menu_item.html' %}
+            {% endwith %}
+          {% endfor %}
+    </ul>
+  </div>
+</nav>

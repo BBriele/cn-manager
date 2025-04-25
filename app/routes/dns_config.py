@@ -4,12 +4,12 @@ from controllers.dns_config_controller import DNSConfigController
 bp = Blueprint('dns_config', __name__, url_prefix='/dns_config')
 
 @bp.route('/')
-def dns_config_list():
+def list():
     dns_configs = DNSConfigController.list_dns_configs()
     return render_template('components/dns_config/list.html', dns_configs=dns_configs)
 
 @bp.route('/create', methods=['GET', 'POST'])
-def create_dns_config():
+def create():
     if request.method == 'POST':
         try:
             dns_config_data = {
@@ -24,7 +24,7 @@ def create_dns_config():
     return render_template('components/dns_config/create.html', errors=None)
 
 @bp.route('/<dns_config_id>/update', methods=['GET', 'POST'])
-def update_dns_config(dns_config_id):
+def update(dns_config_id):
     dns_config = DNSConfigController.get_dns_config(dns_config_id)
 
     if request.method == 'POST':
@@ -41,7 +41,7 @@ def update_dns_config(dns_config_id):
     return render_template('components/dns_config/update.html', dns_config=dns_config, errors=None)
 
 @bp.route('/<dns_config_id>/delete', methods=['POST'])
-def delete_dns_config(dns_config_id):
+def delete(dns_config_id):
     try:
         DNSConfigController.delete_dns_config(dns_config_id)
         return redirect(url_for('components/dns_config.dns_config_list'))

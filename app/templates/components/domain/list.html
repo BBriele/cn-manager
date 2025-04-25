@@ -1,15 +1,11 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Domain List</title>
-</head>
-<body>
-    <h1>Domain List</h1>
-    <ul>
-        {% for domain in domains %}
-            <li>{{ domain.name }}</li>
-        {% endfor %}
-    </ul>
-    <a href="{{ url_for('domain.create_domain') }}">Create New Domain</a>
-</body>
-</html>
+{% extends 'layouts/app-layout.html' %}
+
+    {% block content %}
+        <h1>Domain List</h1>
+        <ul>
+            {% for domain in domains %}
+                <li>{{ domain.name }}</li>
+            {% endfor %}
+        </ul>
+        <a href="{{ url_for('domain.create') }}">Create New Domain</a>
+    {% endblock %}

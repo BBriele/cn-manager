@@ -1,9 +1,6 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Create Domain</title>
-</head>
-<body>
+{% extends 'layouts/app-layout.html' %}
+
+{% block content %}
     <h1>Create Domain</h1>
     {% if errors %}
         <div style="color: red;">
@@ -20,6 +17,5 @@
 
         <input type="submit" value="Create">
     </form>
-    <a href="{{ url_for('domain.domain_list') }}">Back to List</a>
-</body>
-</html>
+    <a href="{{ url_for('domain.list') }}">Back to List</a>
+{% endblock %}

@@ -4,9 +4,9 @@ from controllers.domain_controller import DomainController
 bp = Blueprint('domain', __name__, url_prefix='/domain')
 
 @bp.route('/')
-def domain_list():
+def list():
     return DomainController.list_view()
 
 @bp.route('/create', methods=['GET', 'POST'])
-def create_domain():
+def create():
     return DomainController.create_view(request)

@@ -2,7 +2,7 @@ import nginx
 import os
 from models.nginx_config import NginxConfig
 from models.domain import Domain
-from db_manager import db  # Usa il database manager globale
+from utility import db  # Usa il database manager globale
 
 class NginxManager:
     def __init__(self, config_dir='/etc/nginx/conf.d'):

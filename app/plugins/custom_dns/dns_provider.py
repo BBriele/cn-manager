@@ -4,7 +4,7 @@ from models.base_model import BaseModel
 import json
 from abc import ABC, abstractmethod
 
-from db_manager import db  # Usa il database manager globale
+from utility import db  # Usa il database manager globale
 
 # ==========================
 # 🔹 Interfaccia per i provider DNS

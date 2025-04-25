@@ -1,6 +1,6 @@
 from models.nginx_config import NginxConfig
 from services.nginx_manager import NginxManager
-from db_manager import db  # Usa il database manager globale
+from utility import db, logger  # Usa il database manager globale
 
 nginx_manager = NginxManager()
 

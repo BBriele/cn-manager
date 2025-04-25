@@ -1,4 +1,4 @@
-from app.plugins.custom_dns.dns_provider import DNSProvider
+from plugins.custom_dns.dns_provider import DNSProvider
 
 class CloudflareDNS(DNSProvider):
     def create_record(self, domain, record_type, value):

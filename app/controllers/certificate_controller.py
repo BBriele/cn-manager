@@ -1,6 +1,6 @@
 from models.certificate import Certificate
 from services.cert_manager import CertManager  # Assuming you'll have a CertManager
-from db_manager import db  # Usa il database manager globale
+from utility import db, logger  # Usa il database manager globale
 
 cert_manager = CertManager()  # Initialize CertManager
 

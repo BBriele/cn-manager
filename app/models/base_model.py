@@ -1,6 +1,6 @@
 import uuid
 from datetime import datetime
-from db_manager import db  # Usa il database manager globale
+from utility import db  # Usa il database manager globale
 
 class BaseModel:
     schema = {

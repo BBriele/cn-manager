@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from db_manager import db
+from utility import db
 from models.base_model import BaseModel
 
 class Domain(BaseModel):

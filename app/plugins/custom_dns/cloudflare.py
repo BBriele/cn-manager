@@ -1,4 +1,4 @@
-from models.dns_provider import DNSProvider
+from app.plugins.custom_dns.dns_provider import DNSProvider
 
 class CloudflareDNS(DNSProvider):
     def create_record(self, domain, record_type, value):
@@ -12,3 +12,6 @@ class CloudflareDNS(DNSProvider):
 
     def update_record(self, domain, record_type, old_value, new_value):
         return f"Cloudflare: Updating {record_type} record for {domain} from {old_value} to {new_value}"
+
+    def list(self):
+        return self.db.list("dns_records")

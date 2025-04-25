@@ -112,6 +112,16 @@ class BaseModel:
         
         return db.read(cls.model_name)
     
+    @classmethod
+    def get_all(cls):
+        """
+        Get all items of this model from the database.
+        """
+        if cls.model_name is None:
+            raise ValueError("model_name must be defined in the child class")
+        
+        return db.read(cls.model_name)
+    
     
     def to_json(self):
         """

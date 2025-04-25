@@ -1,6 +1,6 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-from routes import general, config, certs, domain, dns_config
+from routes import general, config, certs, domain, dns_config, nginx_config
 import config as app_config
 import logging
 import os
@@ -16,7 +16,7 @@ def create_app():
     app.register_blueprint(config.bp)
     app.register_blueprint(certs.bp)
     app.register_blueprint(dns_config.bp)
-    #app.register_blueprint(dns.bp)
+    app.register_blueprint(nginx_config.bp)
     app.register_blueprint(domain.bp)
 
     return app

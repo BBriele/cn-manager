@@ -19,7 +19,11 @@
     
         <div class="form-group">
         <label for="domains">Domains (comma-separated)</label>
-        <input type="text" class="form-control" id="domains" name="domains">
+        <select class="form-control" id="domains" name="domains">
+            <option value="">Enter domains or select a preset</option>
+            <option value="example.com,www.example.com">example.com, www.example.com</option>
+            <option value="test.net,www.test.net">test.net, www.test.net</option>
+        </select>
         <small class="form-text text-muted">Enter domains separated by commas.</small>
         </div>
     

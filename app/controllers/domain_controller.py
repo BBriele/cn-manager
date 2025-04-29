@@ -126,7 +126,7 @@ class DomainController:
                     "name": request.form['name']
                 }
                 cls.create_domain(domain_data)
-                return redirect(url_for('domain.domain_list'))
+                return redirect(url_for('domain.list'))
             except Exception as e:
                 return render_template('components/domain/create.html', errors=[str(e)])
 

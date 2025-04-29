@@ -7,7 +7,7 @@ db = DatabaseManager("database.json")
 # Configure logging
 log_file = 'cn_manager.log'
 log_level = logging.INFO
-log_format = '%(asctime)s - %(name)s - %(levelname)s - %(filename)s:%(lineno)d - %(message)s'
+log_format = '%(asctime)s - %(levelname)s - %(filename)s:%(lineno)d - %(message)s'
 
 # Create a logger
 logger = logging.getLogger(__name__)

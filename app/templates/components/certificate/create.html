@@ -2,7 +2,7 @@
 
 {% block content %}
   <h1>Create Certificate</h1>
-  <form method="POST">
+  <form id="certificate_form" method="POST" action="{{ url_for('certificate.create') }}">
     <div class="form-group">
       <label for="name">Certificate Name</label>
       <input type="text" class="form-control" id="name" name="name" placeholder="Enter certificate name" required>
@@ -15,19 +15,35 @@
 
     <div class="form-group">
       <label for="domain_id">Domain</label>
-      <select class="form-control" id="domain_id" name="domain_id" required>
+      <select class="form-control" id="domain_id" name="domains" required>
         {% for domain in domains %}
           <option value="{{ domain.id }}">{{ domain.name }}</option>
         {% endfor %}
       </select>
     </div>
 
+    <label for="dns_challenge">DNS Challenge</label>
+    <input type="checkbox" id="dns_challenge" name="dns_challenge" value="True">
+    <input type="hidden" id="dns_challenge_hidden" name="dns_challenge">
+
     
     <label for="agree">Agree to Terms</label>
-    <input type="checkbox" id="agree" name="agree" required>
+    <input type="checkbox" id="agree" required>
     
     <br>
     <br>
     <button type="submit" class="btn btn-primary">Create Certificate</button>
   </form>
+{% endblock %}
+
+{% block scripts %}
+  <script>
+    const form = document.getElementById('certificate_form');
+    const checkbox = document.getElementById('dns_challenge');
+    const hidden = document.getElementById('dns_challenge_hidden');
+
+    form.addEventListener('submit', () => {
+      hidden.value = checkbox.checked ? 'True' : 'False';
+    });
+  </script>
 {% endblock %}

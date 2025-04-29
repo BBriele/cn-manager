@@ -18,16 +18,13 @@ class CertificateController:
         """
         try:
             certificate = Certificate(**certificate_data)
+            
             db.create("certificates", certificate)
 
             # Generate the certificate using CertManager
-            cert_manager.generate_certificate(certificate)
+            #cert_manager.generate_certificate(certificate)
 
-            # Update the certificate in the database with the generated paths
-            updated_certificate = db.get("certificates", certificate.id)
-            db.update("certificates", certificate.id, updated_certificate)
-
-            return updated_certificate
+            return True
         except Exception as e:
             raise e
 
@@ -61,26 +58,31 @@ class CertificateController:
         """
         Renders the list view of certificates.
         """
+        logger.info("Rendering certificate list view")
         certificates = db.list("certificates")
-        print(certificates)
-        return render_template('components/certificate/list.html', certificates=certificates)
+        domains = db.list("domains")
+
+        return render_template('components/certificate/list.html', certificates=certificates, domains=domains)
     
     @classmethod
     def create_view(cls, request):
-        #logging: Rendering create certificate view
-        logger.info("Rendering create certificate view")
         """
         Renders the create certificate view.
         """
         if request.method == 'POST':
+
             try:
-                certificate_data = request.form.to_dict()
-                
+                logger.info("Creating certificate")
+
+                certificate_data = request.form.to_dict() 
+                certificate_data["dns_challenge"] = bool(certificate_data["dns_challenge"])           
 
                 cls.create_certificate(certificate_data)
                 return redirect(url_for('certificate.list'))
             except Exception as e:
                 return render_template('components/certificate/create.html', errors=[str(e)])
+            
+        logger.info("Rendering create certificate view")
         domains = db.list("domains")
         return render_template('components/certificate/create.html', domains = domains, errors=None)
     
@@ -91,5 +93,16 @@ class CertificateController:
         certificate = db.get("certificates", certificate_id)
         domains = db.list("domains")
         return render_template('components/certificate/edit.html', certificate=certificate, domains=domains)
+    
+    def delete_view(request: str):   
+        """
+        Deletes a certificate and redirects to the list view.
+        """
+        #get the certificate id from the request
+        certificate_id = request.args.get("id")
 
+        identifier = {"id": certificate_id}
+        db.delete("certificates", identifier)
+        return redirect(url_for('certificate.list'))
+    
 #endregion

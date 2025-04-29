@@ -43,9 +43,11 @@ class DatabaseManager:
         """
         data = self._read_data()
         
+
+        #if in data there is no entity_type, create it
         if entity_type not in data:
             data[entity_type] = []
-        
+            
         data[entity_type].append(record.to_json())
         self._write_data(data)
 

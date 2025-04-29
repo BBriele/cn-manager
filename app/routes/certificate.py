@@ -10,3 +10,11 @@ def list():
 @bp.route('/create', methods=['GET', 'POST'])
 def create():
     return CertificateController.create_view(request)
+
+@bp.route('/edit', methods=['GET', 'POST'])
+def edit():
+    return CertificateController.edit_view(request)
+
+@bp.route('/delete', methods=['GET', 'POST'])
+def delete():
+    return CertificateController.delete_view(request)

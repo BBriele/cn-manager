@@ -22,14 +22,12 @@ class DomainController:
         Creates a new domain and saves it to the database.
         """
         try:
-            print(domain_data)
             domain = Domain(**domain_data)
             db.create("domains", domain)
-            # Logging: Domain created successfully
+
             logger.info(f"Domain created successfully: {domain.id}")
             return domain
         except Exception as e:
-            # Logging: Error creating domain
             logger.error(f"Error creating domain: {e}")
             raise e
 

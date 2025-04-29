@@ -1,23 +1,22 @@
-import uuid
 from datetime import datetime
 from typing import List, Optional
+
 from models.base_model import BaseModel
+from models.dns_config import DNSConfig
 #from models.domain import Domain
 #from models.cloudflare import CloudflareConfig
-from models.dns_config import DNSConfig
 
 class Certificate(BaseModel):
     model_name = "certificates"  # Define the model name
     schema = {
         **BaseModel.schema,
-        'email': {'type': str, 'required': True},
         'name': {'type': str, 'required': True},
-        'domains': {'type': list, 'required': True},
+        'email': {'type': str, 'required': True},
+        'domains': {'type': (list, str), 'required': True},
         'dns_challenge': {'type': bool, 'required': True},
-        'dns_config': {'type': (DNSConfig, type(None))},
-        'agree': {'type': bool, 'required': True},
-        'certificate_path': {'type': (str, type(None))},
-        'private_key_path': {'type': (str, type(None))}
+        'dns_config': {'type': (DNSConfig, type(None)), 'required': False},
+        'certificate_path': {'type': (str, type(None)), 'required': False},
+        'private_key_path': {'type': (str, type(None)), 'required': False}
     }
 
     def __init__(self, **kwargs):
@@ -62,13 +61,6 @@ class Certificate(BaseModel):
 
     def set_dns_config(self, dns_config: Optional[object]):
         self.dns_config = dns_config
-        self.updated_at = datetime.utcnow()
-
-    def get_agree(self) -> bool:
-        return self.agree
-
-    def set_agree(self, agree: bool):
-        self.agree = agree
         self.updated_at = datetime.utcnow()
 
     def get_certificate_path(self) -> Optional[str]:

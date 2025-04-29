@@ -8,9 +8,10 @@
     <thead>
       <tr>
         <th>ID</th>
+        <th>Certificate Name</th>
+        <th>Email</th>
+        <th>DNS Challenge</th>
         <th>Domain</th>
-        <th>Valid From</th>
-        <th>Valid To</th>
         <th>Actions</th>
       </tr>
     </thead>
@@ -18,12 +19,24 @@
       {% for certificate in certificates %}
         <tr>
           <td>{{ certificate.id }}</td>
-          <td>{{ certificate.domain_id }}</td>
-          <td>{{ certificate.valid_from }}</td>
-          <td>{{ certificate.valid_to }}</td>
+          <td>{{ certificate.name }}</td>
+          <td>{{ certificate.email }}</td>
           <td>
-            <a href="{{ url_for('certs.edit', certificate_id=certificate.id) }}" class="btn btn-sm btn-primary">Edit</a>
-            <a href="{{ url_for('certs.delete', certificate_id=certificate.id) }}" class="btn btn-sm btn-danger">Delete</a>
+            {% if certificate.dns_challenge %}
+              <i class="fas fa-check"></i>
+            {% else %}
+              <i class="fas fa-times"></i>
+            {% endif %}
+            <td>
+            {% for domain in domains %}
+              {% if domain.id in certificate.domains %}
+                {{ domain.name }}
+              {% endif %}
+            {% endfor %}
+            </td>
+          <td>
+            <a href="{{ url_for('certificate.edit', id=certificate.id) }}" class="btn btn-sm btn-primary">Edit</a>
+            <a href="{{ url_for('certificate.delete', id=certificate.id) }}" class="btn btn-sm btn-danger">Delete</a>
           </td>
         </tr>
       {% endfor %}

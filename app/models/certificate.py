@@ -21,14 +21,9 @@ class Certificate(BaseModel):
     }
 
     def __init__(self, **kwargs):
-        self.email = kwargs.get('email')
-        self.name = kwargs.get('name')
-        self.domains = kwargs.get('domains', [])
-        self.dns_challenge = kwargs.get('dns_challenge', False)
-        self.cloudflare_config = kwargs.get('cloudflare_config')
-        self.agree = kwargs.get('agree', False)
-        self.certificate_path = kwargs.get('certificate_path')
-        self.private_key_path = kwargs.get('private_key_path')
+        """
+        Initialize the Certificate model, calling the parent constructor.
+        """
         super().__init__(**kwargs)
         
     def get_domain_names(self) -> List[str]:
@@ -89,18 +84,6 @@ class Certificate(BaseModel):
     def set_private_key_path(self, private_key_path: Optional[str]):
         self.private_key_path = private_key_path
         self.updated_at = datetime.utcnow()
-
-    def to_dict(self):
-        data = super().to_dict()
-        data['email'] = self.email
-        data['name'] = self.name
-        data['domains'] = [d.to_dict() if isinstance(d, BaseModel) else d for d in self.domains]
-        data['dns_challenge'] = self.dns_challenge
-        data['dns_config'] = self.dns_config.to_dict() if isinstance(self.dns_config, BaseModel) else self.dns_config
-        data['agree'] = self.agree
-        data['certificate_path'] = self.certificate_path
-        data['private_key_path'] = self.private_key_path
-        return data
 
     @classmethod
     def get_by_email(cls, items, email):

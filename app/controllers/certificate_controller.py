@@ -1,3 +1,5 @@
+from flask import Blueprint, render_template, request, redirect, url_for
+
 from models.certificate import Certificate
 from services.cert_manager import CertManager  # Assuming you'll have a CertManager
 from utility import db, logger  # Usa il database manager globale
@@ -51,3 +53,43 @@ class CertificateController:
         Deletes a certificate from the database.
         """
         db.delete("certificates", certificate_id)
+
+
+#region View Functions
+
+    def list_view():
+        """
+        Renders the list view of certificates.
+        """
+        certificates = db.list("certificates")
+        print(certificates)
+        return render_template('components/certificate/list.html', certificates=certificates)
+    
+    @classmethod
+    def create_view(cls, request):
+        #logging: Rendering create certificate view
+        logger.info("Rendering create certificate view")
+        """
+        Renders the create certificate view.
+        """
+        if request.method == 'POST':
+            try:
+                certificate_data = request.form.to_dict()
+                
+
+                cls.create_certificate(certificate_data)
+                return redirect(url_for('certificate.list'))
+            except Exception as e:
+                return render_template('components/certificate/create.html', errors=[str(e)])
+        domains = db.list("domains")
+        return render_template('components/certificate/create.html', domains = domains, errors=None)
+    
+    def edit_view(certificate_id: str):
+        """
+        Renders the edit view for a specific certificate.
+        """
+        certificate = db.get("certificates", certificate_id)
+        domains = db.list("domains")
+        return render_template('components/certificate/edit.html', certificate=certificate, domains=domains)
+
+#endregion

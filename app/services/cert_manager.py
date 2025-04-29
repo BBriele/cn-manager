@@ -5,7 +5,7 @@ from models.domain import Domain
 from models.certificate import Certificate
 
 class CertManager:
-    def __init__(self, cert_dir='/etc/nginx/certs'):
+    def __init__(self, cert_dir='/etc/nginx/custom-certs'):
         self.cert_dir = cert_dir
         os.makedirs(cert_dir, exist_ok=True)
 

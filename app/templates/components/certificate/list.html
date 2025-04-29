@@ -1,0 +1,32 @@
+{% extends 'layouts/app-layout.html' %}
+
+{% block content %}
+  <h1>Certificates</h1>
+  <a href="{{ url_for('certificate.create') }}" class="btn btn-primary">Add New Certificate</a>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Domain</th>
+        <th>Valid From</th>
+        <th>Valid To</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for certificate in certificates %}
+        <tr>
+          <td>{{ certificate.id }}</td>
+          <td>{{ certificate.domain_id }}</td>
+          <td>{{ certificate.valid_from }}</td>
+          <td>{{ certificate.valid_to }}</td>
+          <td>
+            <a href="{{ url_for('certs.edit', certificate_id=certificate.id) }}" class="btn btn-sm btn-primary">Edit</a>
+            <a href="{{ url_for('certs.delete', certificate_id=certificate.id) }}" class="btn btn-sm btn-danger">Delete</a>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
